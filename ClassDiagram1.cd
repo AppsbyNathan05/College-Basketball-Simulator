@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="College_Basketball_Simulator.Schedule">
+    <Position X="28.25" Y="0.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>EAQAAYAAEAACACERBgQAAIAICAgQgCAAARBAAAAgAAA=</HashCode>
+      <FileName>Schedule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="College_Basketball_Simulator.Team">
+    <Position X="24.25" Y="0.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAEAAACAAACAIAAIAAAEAAAAAAAAAAAAIAAAAgA=</HashCode>
+      <FileName>Team.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="College_Basketball_Simulator.SimulationDirector">
+    <Position X="20.25" Y="0.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AEAAAgAAAggAAQCABKCAAAAEkAQAAIAgAaBAAAAIgAA=</HashCode>
+      <FileName>SimulationDirector.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="appResources" />
+      <Field Name="teams" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="College_Basketball_Simulator.Director">
+    <Position X="5" Y="0.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AkJQANEwSgiUAAAQAAAAIRFhoAwAFgAgBOBASAABCxA=</HashCode>
+      <FileName>Director.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="stateDirector" />
+      <Field Name="simulationDirector" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="College_Basketball_Simulator.StateDirector">
+    <Position X="13" Y="4.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>IgjAAAAgAAAAAAAAQAACAhCABA4oBEAQAAABAVABAAQ=</HashCode>
+      <FileName>StateDirector.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="appResources" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="College_Basketball_Simulator.SettingsDirector">
+    <Position X="19.25" Y="5.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>gAABAAAAMBAAAQAAgAAAAwIAAACgAEAAAAAQkIAAAEE=</HashCode>
+      <FileName>SettingsDirector.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="College_Basketball_Simulator.Resources">
+    <Position X="8.75" Y="0.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AIABCRAKABoAMJAIUVCQQAIAIBABGMQAgAAAAIAQIEA=</HashCode>
+      <FileName>Resources.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="College_Basketball_Simulator.Form1">
+    <Position X="1" Y="0.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>r9/q+zex/fuP/9v/13brv3vft//v/5//X797Ou8//68=</HashCode>
+      <FileName>Form1.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="appDirector" />
+      <Field Name="appResources" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="College_Basketball_Simulator.SaveLoadDirector">
+    <Position X="13" Y="11" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>QAAqUAgQiJKCggAUACABoRDRgMUACEAAQAAAABCCAQA=</HashCode>
+      <FileName>SaveLoadDirector.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="appResources" />
+      <Field Name="settingsContainer" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
