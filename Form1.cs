@@ -25,9 +25,6 @@ namespace College_Basketball_Simulator
 
         public Form1()
         {
-
-            System.Windows.Forms.MessageBox.Show("FORM 1 CONSTRUCTOR CALLED");
-
             //INITIALIZE COMPONENT (DON'T DELETE)
             InitializeComponent();
 
@@ -72,38 +69,7 @@ namespace College_Basketball_Simulator
 
             //STANDINGS------------------------------------------------------------
 
-            dataGridViewConference1Stand.DataSource = appDirector.getConferenceStandingsDataTable(0);
-            dataGridViewConference2Stand.DataSource = appDirector.getConferenceStandingsDataTable(1);
-            dataGridViewConference3Stand.DataSource = appDirector.getConferenceStandingsDataTable(2);
-            dataGridViewConference4Stand.DataSource = appDirector.getConferenceStandingsDataTable(3);
-            dataGridViewConference5Stand.DataSource = appDirector.getConferenceStandingsDataTable(4);
-            dataGridViewConference6Stand.DataSource = appDirector.getConferenceStandingsDataTable(5);
-            dataGridViewConference7Stand.DataSource = appDirector.getConferenceStandingsDataTable(6);
-            dataGridViewConference8Stand.DataSource = appDirector.getConferenceStandingsDataTable(7);
-            dataGridViewConference9Stand.DataSource = appDirector.getConferenceStandingsDataTable(8);
-            dataGridViewConference10Stand.DataSource = appDirector.getConferenceStandingsDataTable(9);
-            dataGridViewConference11Stand.DataSource = appDirector.getConferenceStandingsDataTable(10);
-            dataGridViewConference12Stand.DataSource = appDirector.getConferenceStandingsDataTable(11);
-            dataGridViewConference13Stand.DataSource = appDirector.getConferenceStandingsDataTable(12);
-            dataGridViewConference14Stand.DataSource = appDirector.getConferenceStandingsDataTable(13);
-            dataGridViewConference15Stand.DataSource = appDirector.getConferenceStandingsDataTable(14);
-            dataGridViewConference16Stand.DataSource = appDirector.getConferenceStandingsDataTable(15);
-            dataGridViewConference17Stand.DataSource = appDirector.getConferenceStandingsDataTable(16);
-            dataGridViewConference18Stand.DataSource = appDirector.getConferenceStandingsDataTable(17);
-            dataGridViewConference19Stand.DataSource = appDirector.getConferenceStandingsDataTable(18);
-            dataGridViewConference20Stand.DataSource = appDirector.getConferenceStandingsDataTable(19);
-            dataGridViewConference21Stand.DataSource = appDirector.getConferenceStandingsDataTable(20);
-            dataGridViewConference22Stand.DataSource = appDirector.getConferenceStandingsDataTable(21);
-            dataGridViewConference23Stand.DataSource = appDirector.getConferenceStandingsDataTable(22);
-            dataGridViewConference24Stand.DataSource = appDirector.getConferenceStandingsDataTable(23);
-            dataGridViewConference25Stand.DataSource = appDirector.getConferenceStandingsDataTable(24);
-            dataGridViewConference26Stand.DataSource = appDirector.getConferenceStandingsDataTable(25);
-            dataGridViewConference27Stand.DataSource = appDirector.getConferenceStandingsDataTable(26);
-            dataGridViewConference28Stand.DataSource = appDirector.getConferenceStandingsDataTable(27);
-            dataGridViewConference29Stand.DataSource = appDirector.getConferenceStandingsDataTable(28);
-            dataGridViewConference30Stand.DataSource = appDirector.getConferenceStandingsDataTable(29);
-            dataGridViewConference31Stand.DataSource = appDirector.getConferenceStandingsDataTable(30);
-            dataGridViewConference32Stand.DataSource = appDirector.getConferenceStandingsDataTable(31);
+            upDateConferenceStandingsTables();
 
             //TOP 25---------------------------------------------------------------
 
@@ -155,6 +121,48 @@ namespace College_Basketball_Simulator
         //LOCAL FUNCTIONS------------------------------------------------------
         //---------------------------------------------------------------------
         //---------------------------------------------------------------------
+
+        //---------------------------------------------------------------------
+        //UPDATE TABLES--------------------------------------------------------
+        //---------------------------------------------------------------------
+
+        //STANDINGS------------------------------------------------------------
+
+        private void upDateConferenceStandingsTables()
+        {
+            dataGridViewConference1Stand.DataSource = appDirector.getConferenceStandingsDataTable(0);
+            dataGridViewConference2Stand.DataSource = appDirector.getConferenceStandingsDataTable(1);
+            dataGridViewConference3Stand.DataSource = appDirector.getConferenceStandingsDataTable(2);
+            dataGridViewConference4Stand.DataSource = appDirector.getConferenceStandingsDataTable(3);
+            dataGridViewConference5Stand.DataSource = appDirector.getConferenceStandingsDataTable(4);
+            dataGridViewConference6Stand.DataSource = appDirector.getConferenceStandingsDataTable(5);
+            dataGridViewConference7Stand.DataSource = appDirector.getConferenceStandingsDataTable(6);
+            dataGridViewConference8Stand.DataSource = appDirector.getConferenceStandingsDataTable(7);
+            dataGridViewConference9Stand.DataSource = appDirector.getConferenceStandingsDataTable(8);
+            dataGridViewConference10Stand.DataSource = appDirector.getConferenceStandingsDataTable(9);
+            dataGridViewConference11Stand.DataSource = appDirector.getConferenceStandingsDataTable(10);
+            dataGridViewConference12Stand.DataSource = appDirector.getConferenceStandingsDataTable(11);
+            dataGridViewConference13Stand.DataSource = appDirector.getConferenceStandingsDataTable(12);
+            dataGridViewConference14Stand.DataSource = appDirector.getConferenceStandingsDataTable(13);
+            dataGridViewConference15Stand.DataSource = appDirector.getConferenceStandingsDataTable(14);
+            dataGridViewConference16Stand.DataSource = appDirector.getConferenceStandingsDataTable(15);
+            dataGridViewConference17Stand.DataSource = appDirector.getConferenceStandingsDataTable(16);
+            dataGridViewConference18Stand.DataSource = appDirector.getConferenceStandingsDataTable(17);
+            dataGridViewConference19Stand.DataSource = appDirector.getConferenceStandingsDataTable(18);
+            dataGridViewConference20Stand.DataSource = appDirector.getConferenceStandingsDataTable(19);
+            dataGridViewConference21Stand.DataSource = appDirector.getConferenceStandingsDataTable(20);
+            dataGridViewConference22Stand.DataSource = appDirector.getConferenceStandingsDataTable(21);
+            dataGridViewConference23Stand.DataSource = appDirector.getConferenceStandingsDataTable(22);
+            dataGridViewConference24Stand.DataSource = appDirector.getConferenceStandingsDataTable(23);
+            dataGridViewConference25Stand.DataSource = appDirector.getConferenceStandingsDataTable(24);
+            dataGridViewConference26Stand.DataSource = appDirector.getConferenceStandingsDataTable(25);
+            dataGridViewConference27Stand.DataSource = appDirector.getConferenceStandingsDataTable(26);
+            dataGridViewConference28Stand.DataSource = appDirector.getConferenceStandingsDataTable(27);
+            dataGridViewConference29Stand.DataSource = appDirector.getConferenceStandingsDataTable(28);
+            dataGridViewConference30Stand.DataSource = appDirector.getConferenceStandingsDataTable(29);
+            dataGridViewConference31Stand.DataSource = appDirector.getConferenceStandingsDataTable(30);
+            dataGridViewConference32Stand.DataSource = appDirector.getConferenceStandingsDataTable(31);
+        } //END
 
         //---------------------------------------------------------------------
         //NAVIGATION-----------------------------------------------------------
@@ -494,7 +502,7 @@ namespace College_Basketball_Simulator
             }
             else
             {
-                System.Windows.Forms.MessageBox.Show("ERROR: LOADMENUS FUNCTION DIDN'T FIND MENU TO LOAD");
+                System.Windows.Forms.MessageBox.Show("ERROR: LOAD MENUS FUNCTION DIDN'T FIND MENU TO LOAD");
             } //END
 
         } //END
@@ -716,6 +724,9 @@ namespace College_Basketball_Simulator
             labelConference30Stand.Text = appDirector.getConferenceStandingDisplayName(29);
             labelConference31Stand.Text = appDirector.getConferenceStandingDisplayName(30);
             labelConference32Stand.Text = appDirector.getConferenceStandingDisplayName(31);
+
+            //UPDATE CONFERENCE STANDINGS
+            upDateConferenceStandingsTables();
 
             //SET CURRENT DAY LABEL
             labelCurrentDayStand.Text = "Current Simulation Date " + appDirector.getCurrentSimulationDate().ToString("d");
@@ -1000,8 +1011,8 @@ namespace College_Basketball_Simulator
 
         private void tournamentProjectionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // 14 TournProBrac 
-            goTo(appResources.getMenuText(14));
+            // 13 TournProList
+            goTo(appResources.getMenuText(13));
         } //END
 
         private void conferenceTournamentToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1487,7 +1498,7 @@ namespace College_Basketball_Simulator
             string teamName = dataGridViewTeamsSchedFind.Rows[e.RowIndex].Cells[0].Value.ToString();
 
             //GET TEAM INDEX
-            int teamIndex = appResources.getTeamIndex(teamName);
+            int teamIndex = appResources.getTeamIndexFromTeamName(teamName);
 
             //LOAD TEAM SCHEDULE
             goTo(appResources.getMenuText(9), teamIndex);
@@ -1512,7 +1523,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 0)
             {
                 string teamName = dataGridViewTeamSchedTeamSched.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                int teamIndex = appResources.getTeamIndex(teamName);
+                int teamIndex = appResources.getTeamIndexFromTeamName(teamName);
 
                 if (teamIndex >= 0)
                 {
@@ -1544,7 +1555,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 1 || e.ColumnIndex == 4)
             {
                 string teamName = dataGridViewDateSchedDateSched.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                int teamIndex = appResources.getTeamIndex(teamName);
+                int teamIndex = appResources.getTeamIndexFromTeamName(teamName);
 
                 if (teamIndex >= 0)
                 {
@@ -1576,7 +1587,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 0)
             {
                 string teamName = dataGridViewConference1Stand.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             } //END IF
         } //END
 
@@ -1589,7 +1600,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 0)
             {
                 string teamName = dataGridViewConference2Stand.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             } //END IF
         } //END
 
@@ -1602,7 +1613,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 0)
             {
                 string teamName = dataGridViewConference3Stand.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             } //END IF
         } //END
 
@@ -1615,7 +1626,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 0)
             {
                 string teamName = dataGridViewConference4Stand.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             } //END IF
         } //END
 
@@ -1628,7 +1639,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 0)
             {
                 string teamName = dataGridViewConference5Stand.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             } //END IF
         } //END
 
@@ -1641,7 +1652,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 0)
             {
                 string teamName = dataGridViewConference6Stand.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             } //END IF
         } //END
 
@@ -1654,7 +1665,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 0)
             {
                 string teamName = dataGridViewConference7Stand.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             } //END IF
         } //END
 
@@ -1667,7 +1678,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 0)
             {
                 string teamName = dataGridViewConference8Stand.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             } //END IF
         } //END
 
@@ -1680,7 +1691,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 0)
             {
                 string teamName = dataGridViewConference9Stand.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             } //END IF
         } //END
 
@@ -1693,7 +1704,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 0)
             {
                 string teamName = dataGridViewConference10Stand.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             } //END IF
         } //END
 
@@ -1706,7 +1717,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 0)
             {
                 string teamName = dataGridViewConference11Stand.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             } //END IF
         } //END
 
@@ -1719,7 +1730,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 0)
             {
                 string teamName = dataGridViewConference12Stand.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             } //END IF
         } //END
 
@@ -1732,7 +1743,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 0)
             {
                 string teamName = dataGridViewConference13Stand.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             } //END IF
         } //END
 
@@ -1745,7 +1756,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 0)
             {
                 string teamName = dataGridViewConference14Stand.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             } //END IF
         } //END
 
@@ -1758,7 +1769,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 0)
             {
                 string teamName = dataGridViewConference15Stand.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             } //END IF
         } //END
 
@@ -1771,7 +1782,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 0)
             {
                 string teamName = dataGridViewConference16Stand.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             } //END IF
         } //END
 
@@ -1784,7 +1795,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 0)
             {
                 string teamName = dataGridViewConference17Stand.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             } //END IF
         } //END
 
@@ -1797,7 +1808,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 0)
             {
                 string teamName = dataGridViewConference18Stand.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             } //END IF
         } //END
 
@@ -1810,7 +1821,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 0)
             {
                 string teamName = dataGridViewConference19Stand.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             } //END IF
         } //END
 
@@ -1823,7 +1834,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 0)
             {
                 string teamName = dataGridViewConference20Stand.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             } //END IF
         } //END
 
@@ -1836,7 +1847,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 0)
             {
                 string teamName = dataGridViewConference21Stand.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             } //END IF
         } //END
 
@@ -1849,7 +1860,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 0)
             {
                 string teamName = dataGridViewConference22Stand.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             } //END IF
         } //END
 
@@ -1862,7 +1873,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 0)
             {
                 string teamName = dataGridViewConference23Stand.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             } //END IF
         } //END
 
@@ -1875,7 +1886,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 0)
             {
                 string teamName = dataGridViewConference24Stand.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             } //END IF
         } //END
 
@@ -1888,7 +1899,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 0)
             {
                 string teamName = dataGridViewConference25Stand.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             } //END IF
         } //END
 
@@ -1901,7 +1912,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 0)
             {
                 string teamName = dataGridViewConference26Stand.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             } //END IF
         } //END
 
@@ -1914,7 +1925,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 0)
             {
                 string teamName = dataGridViewConference27Stand.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             } //END IF
         } //END
 
@@ -1927,7 +1938,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 0)
             {
                 string teamName = dataGridViewConference28Stand.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             } //END IF
         } //END
 
@@ -1940,7 +1951,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 0)
             {
                 string teamName = dataGridViewConference29Stand.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             } //END IF
         } //END
 
@@ -1953,7 +1964,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 0)
             {
                 string teamName = dataGridViewConference30Stand.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             } //END IF
         } //END
 
@@ -1966,7 +1977,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 0)
             {
                 string teamName = dataGridViewConference31Stand.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             } //END IF
         } //END
 
@@ -1979,7 +1990,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 0)
             {
                 string teamName = dataGridViewConference32Stand.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             } //END IF
         } //END
 
@@ -2010,7 +2021,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 1)
             {
                 string teamName = dataGridViewTop25Top25.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             }
             else if (e.ColumnIndex == 2)
             {
@@ -2032,7 +2043,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 2)
             {
                 string teamName = dataGridViewChampTournProListTournProList.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             }
             else if (e.ColumnIndex == 3)
             {
@@ -2125,7 +2136,7 @@ namespace College_Basketball_Simulator
             if (e.ColumnIndex == 2)
             {
                 string teamName = dataGridViewChampTournListTournList.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-                goTo(appResources.getMenuText(9), appResources.getTeamIndex(teamName));
+                goTo(appResources.getMenuText(9), appResources.getTeamIndexFromTeamName(teamName));
             }
             else if (e.ColumnIndex == 3)
             {

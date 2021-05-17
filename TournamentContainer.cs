@@ -41,7 +41,7 @@ namespace College_Basketball_Simulator
 
         public TournamentContainer()
         {
-            
+
         }
 
         public TournamentContainer(TournamentContainer tournamentContainer)
@@ -103,11 +103,6 @@ namespace College_Basketball_Simulator
                 arrayDoubleRankings,
                 this.arrayDoubleRankings,
                 arrayDoubleRankings.Length);
-        } //END
-
-        public void set353Rankings(int index, int indexValue)
-        {
-            arrayDoubleRankings[index] = indexValue;
         } //END
 
         public double[] get353Rankings()

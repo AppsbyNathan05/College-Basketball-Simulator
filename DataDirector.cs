@@ -129,7 +129,7 @@ namespace College_Basketball_Simulator
             for (int conferenceIndex = 0; conferenceIndex < conferenceStandingsArray.Length; conferenceIndex++)
             {
                 //INITIALIZE STANDINGS
-                conferenceStandingsArray[conferenceIndex] = new ConferenceStandingsTable(appResources.getTeamsConferenceName(conferenceIndex));
+                conferenceStandingsArray[conferenceIndex] = new ConferenceStandingsTable(conferenceIndex);
 
                 //INITIALIZE INDEXES
                 arrayIntIndexConferenceStandings[conferenceIndex] = conferenceIndex;
@@ -862,20 +862,18 @@ namespace College_Basketball_Simulator
             //SET FIRST INDEX
             arrayIntIndexConferenceStandings[0] = firstConferenceIndex;
 
-            //FOR THE REMAINING INDEXES
-            //SET INDEX
-            for (int conferenceIndex = 1; conferenceIndex < arrayIntIndexConferenceStandings.Length; conferenceIndex++)
+            //SET INDEXES BEFORE FIRST
+            for (int conferenceIndex = 0; conferenceIndex < firstConferenceIndex; conferenceIndex++)
             {
-                if (conferenceIndex > firstConferenceIndex)
-                {
-                    //SET INDEXES
-                    arrayIntIndexConferenceStandings[conferenceIndex] = conferenceIndex;
-                }
-                else if (conferenceIndex <= firstConferenceIndex)
-                {
-                    //SET INDEXES
-                    arrayIntIndexConferenceStandings[conferenceIndex] = conferenceIndex - 1;
-                } //END IF
+                //SET INDEXES
+                arrayIntIndexConferenceStandings[conferenceIndex + 1] = conferenceIndex;
+            } //END FOR
+
+            //SET INDEXES AFTER FIRST
+            for (int conferenceIndex = firstConferenceIndex + 1; conferenceIndex < arrayIntIndexConferenceStandings.Length; conferenceIndex++)
+            {
+                //SET INDEXES
+                arrayIntIndexConferenceStandings[conferenceIndex] = conferenceIndex;
             } //END FOR
         } //END
 

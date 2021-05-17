@@ -124,37 +124,31 @@ namespace College_Basketball_Simulator
             {
                 // 0 NoDataState 
                 boolNoDataState = true;
-                System.Windows.Forms.MessageBox.Show("STATE: NO DATA STATE");
             }
             else if (string.Compare(state, appResources.getStateText(1)) == 0)
             {
                 // 1 PreseasonState
                 boolPreseasonState = true;
-                System.Windows.Forms.MessageBox.Show("STATE: PRESEASON");
             }
             else if (string.Compare(state, appResources.getStateText(2)) == 0)
             {
                 // 2 SeasonState 
                 boolSeasonState = true;
-                System.Windows.Forms.MessageBox.Show("STATE: SEASON");
             }
             else if (string.Compare(state, appResources.getStateText(3)) == 0)
             {
                 // 3 ConferenceTournamentState 
                 boolConferenceTournamentState = true;
-                System.Windows.Forms.MessageBox.Show("STATE: CONFERENCE TOURNAMENT");
             }
             else if (string.Compare(state, appResources.getStateText(4)) == 0)
             {
                 // 4 ChampionshipTournamentState 
                 boolChampionshipTournamentState = true;
-                System.Windows.Forms.MessageBox.Show("STATE: CHAMP TOURNAMENT");
             }
             else if (string.Compare(state, appResources.getStateText(5)) == 0)
             {
                 // 5 PostSeasonState
                 boolPostSeasonState = true;
-                System.Windows.Forms.MessageBox.Show("STATE: POST SEASON");
             }
             else
             {

@@ -41,6 +41,9 @@ namespace College_Basketball_Simulator
         //(index from the probability list is used to find the score adjustment)
         List<int> listScoringDistributionRange = new List<int>();
 
+        //BELL CURVE DISTRIBUTION SIDE LENGTH
+        private int sideLength = 0;
+
         //DIVISION II SCHOOL OFFENSIVE SCORING AVERAGE
         private int divisionIIOffensiveScoringAverage = 0;
 
@@ -625,8 +628,6 @@ namespace College_Basketball_Simulator
 
         public void initializeAssociation()
         {
-            //System.Windows.Forms.MessageBox.Show("INITIALIZE ASSOCIATION");
-
             //SET SCHEDULE INDEXES
             setScheduleIndexes();
         } //END
@@ -713,8 +714,6 @@ namespace College_Basketball_Simulator
 
         public void initializeSimulationProbabilities(SettingsDirector settingsDirector)
         {
-            System.Windows.Forms.MessageBox.Show("INITIALIZE PROBABILITIES");
-
             //INITIALIZE SCORING AVERAGES
             initializeScoringAverages(settingsDirector);
 
@@ -728,7 +727,6 @@ namespace College_Basketball_Simulator
 
         private void initializeScoringAverages(SettingsDirector settingsDirector)
         {
-
             //AVERAGE OFFENSIVE POINTS MULTIPLIER
             double averageOffensivePointsMultiplier =
                 (settingsDirector.maxScoringAverage - settingsDirector.minScoringAverage) /
@@ -753,7 +751,6 @@ namespace College_Basketball_Simulator
                     Convert.ToInt32(
                         (teamsArray[teamIndex].ratingDefensive - settingsDirector.getLowestDefensiveRating()) *
                         averageDeffensivePointsMultiplier);
-
             } //END FOR
 
             divisionIIOffensiveScoringAverage = settingsDirector.minScoringAverage;
@@ -764,12 +761,6 @@ namespace College_Basketball_Simulator
 
         private void initializeScoringDistributionRange(SettingsDirector settingsDirector)
         {
-            //NEGATIVE SIDE
-            List<int> negativeSide = new List<int>();
-
-            //POSITIVE SIDE
-            List<int> positiveSide = new List<int>();
-
             //INCREMENT
             double increment = 0.0;
 
@@ -777,61 +768,40 @@ namespace College_Basketball_Simulator
             int bellCurveLength = appResources.getLengthOfBellCurve();
 
             //HALF LENGTH
-            int halfLength = settingsDirector.scoringDistribution;
+            sideLength = settingsDirector.scoringDistribution;
 
             //SET HALF LENGTH
-            if (halfLength % 2 == 0)
+            if (sideLength % 2 == 0)
             {
                 //ADD 2 FOR ZEROS
                 //DIVIDE BY 2
-                halfLength = (halfLength + 2)/2;
+                sideLength = (sideLength + 2) / 2;
             }
             else
             {
                 //ADD 3, 2 FOR ZEROS AND 1 TO EVEN EACH SIDE
                 //DIVIDE BY 2
-                halfLength = (halfLength + 3)/2;
+                sideLength = (sideLength + 3) / 2;
             }//END IF
 
             //SET INCREMENT
-            increment = bellCurveLength / (halfLength * 2);
-
-            //FOR HALF THE PROBABILITY DISTRIBUTION
-            //FILL PROBABILITY DISTRIBUTION
-            for (int index = 0; index < halfLength; index++)
-            {
-                negativeSide.Add(appResources.getBellCurveValue(((int)((index + 1) * increment)) - 1));
-                positiveSide.Add(appResources.getBellCurveValue((bellCurveLength - (int)(index * increment)) - 1));
-            }//END FOR
+            increment = (bellCurveLength / 2) / sideLength;
 
             //CLEAR DATA
             listProbabilityDistributionRange.Clear();
 
             //FOR HALF THE PROBABILITY DISTRIBUTION
-            //ADD NEGATIVE SIDE TO DISTRIBUTION
-            for (int index = 0; index < halfLength; index++)
+            //FILL PROBABILITY DISTRIBUTION
+            for (int index = 0; index < sideLength; index++)
             {
-                listProbabilityDistributionRange.Add(negativeSide[index]);
-            }//END FOR
-
-            //FOR HALF THE PROBABILITY DISTRIBUTION
-            //ADD POSITIVE SIDE TO DISTRIBUTION
-            for (int index = halfLength - 1; index >= 0; index--)
-            {
-                listProbabilityDistributionRange.Add(positiveSide[index]);
+                listProbabilityDistributionRange.Add(appResources.getBellCurveValue(((int)((index + 1) * increment)) - 1) + (index * 4));
             }//END FOR
 
             //CLEAR DATA
             listScoringDistributionRange.Clear();
 
-            //SET SCORE ADJUSTMENTS NEGATIVE SIDE
-            for (int index = 0; index < halfLength; index++)
-            {
-                listScoringDistributionRange.Add((halfLength - 1 - index) * -1);
-            }//END FOR
-
-            //SET SCORE ADJUSTMENTS POSITIVE SIDE
-            for (int index = 0; index < halfLength; index++)
+            //SET SCORE ADJUSTMENTS
+            for (int index = sideLength - 1; index >= 0; index--)
             {
                 listScoringDistributionRange.Add(index);
             }//END FOR
@@ -846,17 +816,24 @@ namespace College_Basketball_Simulator
             Random random = new Random();
 
             //DISTRIBUTION NUMBER
-            int probability = random.Next(10000);
+            int probability = random.Next(5001 + (sideLength * 4 - 1));
+
+            //DISTRIBUTION NUMBER
+            int positiveNegative = random.Next(2);
 
             //FOR THE PROBABILITY DISTRIBUTION
             //EXIT WHEN SCORE FOUND
             for (int index = 0; index < listProbabilityDistributionRange.Count; index++)
             {
-                if (listProbabilityDistributionRange[index] >= probability)
+                if (listProbabilityDistributionRange[index] >= probability && positiveNegative == 1)
                 {
                     return listScoringDistributionRange[index];
+                }
+                else if (listProbabilityDistributionRange[index] >= probability && positiveNegative == 0)
+                {
+                    return listScoringDistributionRange[index] * -1;
                 }//END IF
-                
+
             }//END FOR
 
             //DISPLAY ERROR MESSAGE

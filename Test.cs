@@ -10,23 +10,39 @@ namespace College_Basketball_Simulator
     {
 
         private Resources appResources = new Resources();
-        private Director testDirector = new Director();
+        //private Director testDirector = new Director();
         private SettingsDirector testSettingsDirector = new SettingsDirector();
+
+        //LIST OF PROBABILITY TO DETERMINE SCORE ADJUSTMENT
+        //(determined by the bellcurve array)
+        //(random number between is found in list)
+        List<int> listProbabilityDistributionRange = new List<int>();
+
+        //LIST OF SCORE ADJUSTMENTS
+        //(determined by range of score)
+        //(index from the probability list is used to find the score adjustment)
+        List<int> listScoringDistributionRange = new List<int>();
+
+        //BELL CURVE DISTRIBUTION SIDE LENGTH
+        private int sideLength = 0;
 
         static void Main(string[] args)
         {
             Test test = new Test();
 
-            test.test1();
+            //test.test1();
 
-            //test.test2();
+            test.scoreAdjustmentTest();
 
-            //test.scheduleTest();
         }
+
+        //---------------------------------------------------------------------
+        //TEST 1---------------------------------------------------------------
+        //---------------------------------------------------------------------
 
         public void test1()
         {
-            testDirector.saveSettings(testSettingsDirector, @"C:\Users\know1\Desktop\NCAA BB Sim\Test Folder 5\");
+            //testDirector.saveSettings(testSettingsDirector, @"C:\Users\know1\Desktop\NCAA BB Sim\Test Folder 5\");
 
             //System.Windows.Forms.MessageBox.Show("IMPORT ONLINE DATA");
             //testDirector.importOnlineData();
@@ -39,126 +55,140 @@ namespace College_Basketball_Simulator
             //testDirector.saveReplaceSimulation("SaveTwo", "SaveThree");
 
             //System.Windows.Forms.MessageBox.Show("LOAD SIMULATION");
-            testDirector.loadSimulation("SaveOne");
-            testDirector.saveNewSimulationResultsFile("SaveTwo");
+            //testDirector.loadSimulation("SaveTwo");
+            //testDirector.saveNewSimulationResultsFile("SaveFour");
         }
 
-        public void test2()
+        //---------------------------------------------------------------------
+        //SCORE ADJUSTMENT TEST------------------------------------------------
+        //---------------------------------------------------------------------
+
+        public void scoreAdjustmentTest()
         {
-            testDirector.saveSettings(testSettingsDirector, @"C:\Users\know1\Desktop\NCAA BB Sim\Test Folder 5\");
+            int[] scores = new int[41];
+            int[] count = new int[41];
 
-            System.Windows.Forms.MessageBox.Show("END TEST");
+            int score = 0;
+
+            for (int index = 0; index < scores.Length; index++)
+            {
+                scores[index] = -20 + index;
+            }//END FOR
+
+            for (int index = 0; index < count.Length; index++)
+            {
+                count[index] = 0;
+            }//END FOR
+
+            initializeScoringDistributionRange(testSettingsDirector);
+
+            for (int index = 0; index < (5001 + (sideLength * 4 - 1)); index++)
+            {
+                score = getScoreAdjustment(index, 0) + 20;
+                count[score] = count[score] + 1;
+                score = getScoreAdjustment(index, 1) + 20;
+                count[score] = count[score] + 1;
+            }//END FOR
+
+            for (int index = 0; index < count.Length; index++)
+            {
+                Console.WriteLine(scores[index] + ": " + count[index]);
+            }//END FOR
+
+            Console.WriteLine();
+            Console.WriteLine("Prob Count: " + listProbabilityDistributionRange.Count);
+            Console.WriteLine();
+
+            for (int index = 0; index < listProbabilityDistributionRange.Count; index++)
+            {
+                Console.WriteLine(listScoringDistributionRange[index] + ": " + listProbabilityDistributionRange[index]);
+            }//END FOR
         }
 
-        public void scheduleTest()
+        public void initializeScoringDistributionRange(SettingsDirector settingsDirector)
         {
-            DateTime gameDate = new DateTime(2020, 9, 1, 0, 0, 0, 0);
+            //INCREMENT
+            double increment = 0.0;
 
-            Schedule scheduleOne = new Schedule();
-            Schedule scheduleTwo = new Schedule();
-            Schedule scheduleThree = new Schedule();
-            Schedule scheduleFour = new Schedule();
+            //BELL CURVE LENGTH LENGTH
+            int bellCurveLength = appResources.getLengthOfBellCurve();
 
-            scheduleOne.addRegSeasonGame(
-                gameDate,
-                "Two",
-                0,
-                0,
-                5,
-                10,
-                5,
-                10,
-                true
-                );
+            //HALF LENGTH
+            sideLength = settingsDirector.scoringDistribution;
 
-            scheduleTwo.addRegSeasonGame(
-                gameDate,
-                "One",
-                1,
-                0,
-                10,
-                5,
-                10,
-                5,
-                true
-                );
+            //SET HALF LENGTH
+            if (sideLength % 2 == 0)
+            {
+                //ADD 2 FOR ZEROS
+                //DIVIDE BY 2
+                sideLength = (sideLength + 2) / 2;
+            }
+            else
+            {
+                //ADD 3, 2 FOR ZEROS AND 1 TO EVEN EACH SIDE
+                //DIVIDE BY 2
+                sideLength = (sideLength + 3) / 2;
+            }//END IF
 
-            //scheduleOne.addRegSeasonGame(
-            //    gameDate,
-            //    string opponentName,
-            //    int opponentIndex,
-            //    int opponentRowIndex,
-            //    int realPoints,
-            //    int realOpponentPoints,
-            //    int simPoints,
-            //    int simOpponentPoints,
-            //    Boolean confGame
-            //    );
+            //SET INCREMENT
+            increment = (bellCurveLength / 2) / sideLength;
 
-            gameDate.AddDays(1.0);
+            //CLEAR DATA
+            listProbabilityDistributionRange.Clear();
 
-            scheduleOne.addRegSeasonGame(
-                gameDate,
-                "Two",
-                0,
-                1,
-                5,
-                11,
-                5,
-                11,
-                true
-                );
+            //FOR HALF THE PROBABILITY DISTRIBUTION
+            //FILL PROBABILITY DISTRIBUTION
+            for (int index = 0; index < sideLength; index++)
+            {
+                listProbabilityDistributionRange.Add(appResources.getBellCurveValue(((int)((index + 1) * increment)) - 1) + (index * 4));
+            }//END FOR
 
-            scheduleTwo.addRegSeasonGame(
-                gameDate,
-                "One",
-                1,
-                1,
-                11,
-                5,
-                11,
-                5,
-                true
-                );
+            //CLEAR DATA
+            listScoringDistributionRange.Clear();
 
-            gameDate.AddDays(1.0);
+            //SET SCORE ADJUSTMENTS
+            for (int index = sideLength - 1; index >= 0; index--)
+            {
+                listScoringDistributionRange.Add(index);
+            }//END FOR
 
-            scheduleThree.addRegSeasonGame(
-                gameDate,
-                "Three",
-                2,
-                0,
-                6,
-                10,
-                6,
-                10,
-                true
-                );
+        } //END
 
-            scheduleFour.addRegSeasonGame(
-                gameDate,
-                "Four",
-                3,
-                0,
-                10,
-                6,
-                10,
-                6,
-                true
-                );
+        //GET POINTS-----------------------------------------------------------
 
-            Team teamOne = new Team("One", "A");
-            Team teamTwo = new Team("Two", "A");
-            Team teamThree = new Team("Three", "B");
-            Team teamFour = new Team("Four", "B");
+        public int getScoreAdjustment(int probability, int positiveNegative)
+        {
+            //RANDOM NUMBER GENERATOR
+            Random random = new Random();
 
+            //DISTRIBUTION NUMBER
+            //int probability = random.Next(5001 + (sideLength * 4 - 1));
 
+            //DISTRIBUTION NUMBER
+            //int positiveNegative = random.Next(2);
 
-            teamOne.setSchedule(scheduleOne);
-            teamTwo.setSchedule(scheduleTwo);
-            teamThree.setSchedule(scheduleThree);
-            teamFour.setSchedule(scheduleFour);
-        }
+            //FOR THE PROBABILITY DISTRIBUTION
+            //EXIT WHEN SCORE FOUND
+            for (int index = 0; index < listProbabilityDistributionRange.Count; index++)
+            {
+                if (listProbabilityDistributionRange[index] >= probability && positiveNegative == 1)
+                {
+                    return listScoringDistributionRange[index];
+                }
+                else if (listProbabilityDistributionRange[index] >= probability && positiveNegative == 0)
+                {
+                    return listScoringDistributionRange[index] * -1;
+                }//END IF
+
+            }//END FOR
+
+            //DISPLAY ERROR MESSAGE
+            //System.Windows.Forms.MessageBox.Show("SCORE ADJUSTMENT ERROR");
+
+            //RETURN LAST ADJUSTMENT
+            return listScoringDistributionRange[listScoringDistributionRange.Count - 1];
+
+        } //END
 
     }
 }

@@ -48,7 +48,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>College_Basketball_Simulator.Test</StartupObject>
+    <StartupObject>College_Basketball_Simulator.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

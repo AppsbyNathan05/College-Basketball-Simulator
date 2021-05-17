@@ -51,7 +51,7 @@ namespace College_Basketball_Simulator
 
                     //INITIALIZE SETTINGS 
                     //(must import data before loading settings)
-                    this.settingsDirector = new SettingsDirector(saveLoadDirector.loadSettings());
+                    this.settingsDirector = new SettingsDirector(saveLoadDirector.GetSettings());
 
                     //INITIALIZE SIMULATION PROBABILITIES 
                     //(must load settings before initializing simulation probabilities)
@@ -592,6 +592,10 @@ namespace College_Basketball_Simulator
 
         public void importOnlineData()
         {
+            //DELETE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            Console.WriteLine("IMPORT ONLINE DATA");
+            //DELETE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
             //INITIALIZE ASSOCIATION 
             this.simulationDirector = new SimulationDirector(saveLoadDirector.importData());
 
@@ -600,7 +604,7 @@ namespace College_Basketball_Simulator
 
             //INITIALIZE SETTINGS 
             //(must import data before loading settings)
-            this.settingsDirector = new SettingsDirector(saveLoadDirector.loadSettings());
+            this.settingsDirector = new SettingsDirector(saveLoadDirector.GetSettings());
 
             //INITIALIZE SIMULATION PROBABILITIES 
             //(must load settings before initializing simulation probabilities)
@@ -612,6 +616,10 @@ namespace College_Basketball_Simulator
 
             //UPDATE ASSOCIATION DATA
             dataDirector.updateDataDirector(settingsDirector);
+
+            //DELETE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            Console.WriteLine("END IMPORT ONLINE DATA");
+            //DELETE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         } //END
 
         //---------------------------------------------------------------------
@@ -669,6 +677,10 @@ namespace College_Basketball_Simulator
 
         public void loadSimulation(string displayFileName)
         {
+            //DELETE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            Console.WriteLine("LOAD SIMULATION");
+            //DELETE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
             //INITIALIZE ASSOCIATION 
             this.simulationDirector = new SimulationDirector(saveLoadDirector.loadSimulation(displayFileName));
 
@@ -677,7 +689,7 @@ namespace College_Basketball_Simulator
 
             //INITIALIZE SETTINGS 
             //(must import data before loading settings)
-            this.settingsDirector = new SettingsDirector(saveLoadDirector.loadSettings());
+            this.settingsDirector = new SettingsDirector(saveLoadDirector.GetSettings());
 
             //INITIALIZE SIMULATION PROBABILITIES 
             //(must load settings before initializing simulation probabilities)
@@ -689,6 +701,10 @@ namespace College_Basketball_Simulator
 
             //UPDATE ASSOCIATION DATA
             dataDirector.updateDataDirector(settingsDirector);
+
+            //DELETE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            Console.WriteLine("END LOAD SIMULATION");
+            //DELETE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         }
 
         //DELETE---------------------------------------------------------------
@@ -713,6 +729,10 @@ namespace College_Basketball_Simulator
 
         public Boolean saveSettings(SettingsDirector settingsDirector, string saveFolderFilePath)
         {
+            //DELETE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            Console.WriteLine("SAVE SETTINGS");
+            //DELETE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
             //TRANSFER NON USER ENTERED RATINGS OVER
             settingsDirector.setEarliestGameDate(this.settingsDirector.getEarliestGameDate());
             settingsDirector.setHighLowOffensiveRatings(this.settingsDirector.getHighestOffensiveRating());
@@ -725,7 +745,7 @@ namespace College_Basketball_Simulator
             if (saveLoadDirector.saveSettings(settingsDirector, saveFolderFilePath))
             {
                 //INITIALIZE SETTINGS 
-                this.settingsDirector = new SettingsDirector(saveLoadDirector.loadSettings());
+                this.settingsDirector = new SettingsDirector(saveLoadDirector.GetSettings());
 
                 //IF SIMULATION LOADED
                 //INITIALIZE SIMULATION PROBABILITIES
@@ -742,6 +762,10 @@ namespace College_Basketball_Simulator
                 //ERROR MESSAGE HANDLED AT FORM LEVEL
                 return false;
             }//END IF
+
+            //DELETE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            Console.WriteLine("END SAVE SETTINGS");
+            //DELETE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         } //END
 

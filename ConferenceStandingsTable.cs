@@ -17,6 +17,9 @@ namespace College_Basketball_Simulator
 
         private bool disposedValue = false; // To detect redundant calls
 
+        //CONFERENCE INDEX
+        private int conferenceIndex = 0;
+
         //CONFERENCE DISPLAY NAME
         public string conferenceDisplayName { get; set; }
         
@@ -29,13 +32,15 @@ namespace College_Basketball_Simulator
             initializeColumnHeadings();
         } //END
 
-        public ConferenceStandingsTable(string conferenceDisplayName)
+        public ConferenceStandingsTable(int conferenceIndex)
         {
             //SET CONFERENCE DISPLAY NAME
-            this.conferenceDisplayName = conferenceDisplayName;
+            this.conferenceDisplayName = appResources.getConferenceName(conferenceIndex);
+
+            this.conferenceIndex = conferenceIndex;
 
             //INITIALIZE CONFERENCE CHAMPION INDEX
-            conferenceChampionIndex = appResources.getConferenceTeamIndexes(conferenceDisplayName)[0];
+            conferenceChampionIndex = appResources.getConferenceTeamIndexes(conferenceIndex)[0];
 
             //ADD COLUMN HEADINGS
             initializeColumnHeadings();
@@ -65,7 +70,7 @@ namespace College_Basketball_Simulator
         public void fillConferenceStandingsDataTable(Team[] teamsArray, double[] arrayDoubleRankings, int[] arrayIntOrder)
         {
             //GET CONFERENCE TEAM INDEXES
-            int[] arrayIntConferenceTeamIndexes = appResources.getConferenceTeamIndexes(conferenceDisplayName);
+            int[] arrayIntConferenceTeamIndexes = appResources.getConferenceTeamIndexes(conferenceIndex);
 
             //ROW VARIABLE
             DataRow row;
@@ -87,14 +92,34 @@ namespace College_Basketball_Simulator
                 row[0] = teamsArray[arrayIntConferenceTeamIndexes[arrayIntOrder[index]]].teamNameDisplay;
                 row[1] = teamsArray[arrayIntConferenceTeamIndexes[arrayIntOrder[index]]].getWins();
                 row[2] = teamsArray[arrayIntConferenceTeamIndexes[arrayIntOrder[index]]].getLosses();
-                row[3] = (double)teamsArray[arrayIntConferenceTeamIndexes[arrayIntOrder[index]]].getWins() / 
-                    (double)(teamsArray[arrayIntConferenceTeamIndexes[arrayIntOrder[index]]].getLosses() + 
-                    teamsArray[arrayIntConferenceTeamIndexes[arrayIntOrder[index]]].getWins());
+
+                //CHECK IF ZERO WINS
+                if (teamsArray[arrayIntConferenceTeamIndexes[arrayIntOrder[index]]].getWins() > 0)
+                {
+                    row[3] = (double)teamsArray[arrayIntConferenceTeamIndexes[arrayIntOrder[index]]].getWins() /
+                        (double)(teamsArray[arrayIntConferenceTeamIndexes[arrayIntOrder[index]]].getLosses() +
+                        teamsArray[arrayIntConferenceTeamIndexes[arrayIntOrder[index]]].getWins());
+                }
+                else
+                {
+                    row[3] = 0.0;
+                }//END IF
+
                 row[4] = teamsArray[arrayIntConferenceTeamIndexes[arrayIntOrder[index]]].getConferenceWins();
                 row[5] = teamsArray[arrayIntConferenceTeamIndexes[arrayIntOrder[index]]].getConferenceLosses();
-                row[6] = (double)teamsArray[arrayIntConferenceTeamIndexes[arrayIntOrder[index]]].getConferenceWins() /
-                    (double)(teamsArray[arrayIntConferenceTeamIndexes[arrayIntOrder[index]]].getConferenceLosses() +
-                    teamsArray[arrayIntConferenceTeamIndexes[arrayIntOrder[index]]].getConferenceWins());
+
+                //CHECK IF ZERO WINS
+                if (teamsArray[arrayIntConferenceTeamIndexes[arrayIntOrder[index]]].getConferenceWins() > 0)
+                {
+                    row[6] = (double)teamsArray[arrayIntConferenceTeamIndexes[arrayIntOrder[index]]].getConferenceWins() /
+                        (double)(teamsArray[arrayIntConferenceTeamIndexes[arrayIntOrder[index]]].getConferenceLosses() +
+                        teamsArray[arrayIntConferenceTeamIndexes[arrayIntOrder[index]]].getConferenceWins());
+                }
+                else
+                {
+                    row[6] = 0.0;
+                }//END IF
+
                 row[7] = arrayDoubleRankings[arrayIntConferenceTeamIndexes[arrayIntOrder[index]]];
 
                 //ADD ROW TO DATA TABLE

@@ -409,11 +409,12 @@ namespace College_Basketball_Simulator
                         writer.WriteLine(displayLine + " ");
                     }//END FOR
 
+                    //WRITE BREAK
+                    writer.WriteLine(" ###### ");
+
                     //FOR ALL TEAMS
                     for (int teamIndex = 0; teamIndex < appResources.getLengthOfTeamNames(); teamIndex++)
                     {
-                        //WRITE BREAK
-                        writer.WriteLine(" ###### ");
 
                         //WRITE TEAM NAME
                         writer.WriteLine(appResources.getTeamName(teamIndex));
@@ -703,10 +704,10 @@ namespace College_Basketball_Simulator
                     settingsDirector.scoringDistribution = Convert.ToInt32(lines[2]);
                     settingsDirector.simulationType = lines[3];
                     settingsDirector.setEarliestGameDate(Convert.ToDateTime(lines[4]));
-                    settingsDirector.setHighLowOffensiveRatings(Convert.ToDouble(lines[5]));
-                    settingsDirector.setHighLowOffensiveRatings(Convert.ToDouble(lines[6]));
-                    settingsDirector.setHighLowDefensiveRatings(Convert.ToDouble(lines[7]));
-                    settingsDirector.setHighLowDefensiveRatings(Convert.ToDouble(lines[8]));
+                    settingsDirector.setHighestOffensiveRating(Convert.ToDouble(lines[5]));
+                    settingsDirector.setLowestOffensiveRating(Convert.ToDouble(lines[6]));
+                    settingsDirector.setHighestDefensiveRating(Convert.ToDouble(lines[7]));
+                    settingsDirector.setLowestDefensiveRating(Convert.ToDouble(lines[8]));
 
                     fileIndex = 9;
 
@@ -805,14 +806,17 @@ namespace College_Basketball_Simulator
                         DateTime date;
 
                         //WHILE NOT BREAK LINE
-                        while (fileIndex < lines.Length && string.Compare(lines[fileIndex], " ###### ") != 0)
+                        while (fileIndex < lines.Length && string.Compare(lines[fileIndex], " ###### ") == 0)
                         {
                             //INCREMENT FILE INDEX
                             fileIndex++;
                         } //END WHILE LINES IN FILE
 
+                        ////INCREMENT FILE INDEX
+                        //fileIndex++;
+
                         //SET TEAM INDEX
-                        teamIndex = appResources.getTeamIndex(lines[fileIndex]);
+                        teamIndex = appResources.getTeamIndexFromTeamName(lines[fileIndex]);
 
                         //SET OFFENSIVE AND DEFENSIVE RATINGS
                         simulationDirector.setOffensiveRating(teamIndex, Convert.ToDouble(lines[fileIndex + 1]));
@@ -1197,8 +1201,6 @@ namespace College_Basketball_Simulator
         {
             //ONLY MAKE NEW RATINGS FILE IF NOT ON SAME DAY AS PREVIOUS
 
-            System.Windows.Forms.MessageBox.Show("IMPORT RATINGS DATA");
-
             //KEN POM URL
             string kenPomURL = "https://kenpom.com/index.php?y=2020";
 
@@ -1222,7 +1224,7 @@ namespace College_Basketball_Simulator
                 sourceCode = sourceCode.Substring(sourceCode.IndexOf(nameMark) + nameMark.Length);
 
                 //GET AND CALCULATE TEAM INDEX
-                teamIndex = appResources.getTeamIndex(sourceCode.Substring(0, sourceCode.IndexOf("</")));
+                teamIndex = appResources.getTeamIndexFromTeamName(sourceCode.Substring(0, sourceCode.IndexOf("</")));
 
                 //CUT STRING TO OFFENSIVE RATING
                 sourceCode = sourceCode.Substring(sourceCode.IndexOf(offensiveMark) + offensiveMark.Length);
@@ -1263,11 +1265,8 @@ namespace College_Basketball_Simulator
             string sourceCode = getRawData(url);
 
             //TEAM VARIABLES
-            int teamIndex = appResources.getTeamIndex(
-                appResources.getTeamName(id));
-            int conferenceIndex = appResources.getConferenceIndex(
-                    appResources.getTeamsConferenceName(
-                        appResources.getTeamName(id)));
+            int teamIndex = appResources.getTeamIndexFromTeamID(id);
+            int conferenceIndex = appResources.getConferenceIndex(teamIndex);
 
             //TOURNAMENT ROUNDS
             int confTournRound = 0;
@@ -1342,7 +1341,7 @@ namespace College_Basketball_Simulator
                         opponentName = appResources.getTeamName(sourceCode.Substring(0, sourceCode.IndexOf("/")));
 
                         //SET OPPONENT INDEX
-                        opponentIndex = appResources.getTeamIndex(opponentName);
+                        opponentIndex = appResources.getTeamIndexFromTeamName(opponentName);
                     }
                     else
                     {
@@ -1468,18 +1467,6 @@ namespace College_Basketball_Simulator
                         // Sim Opponent Points
                         // Conference Game
 
-                        //DELETE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                        Console.WriteLine(date + " X " +
-                            opponentName + " X " +
-                            opponentIndex + " X " +
-                            -1 + " X " +
-                            points + " X " +
-                            opponentPoints + " X " +
-                            0 + " X " +
-                            0 + " X " +
-                            appResources.sameConference(teamIndex, opponentIndex, conferenceIndex));
-                        //DELETE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
                         schedule.addRegSeasonGame(
                             date,
                             opponentName,
@@ -1503,16 +1490,6 @@ namespace College_Basketball_Simulator
                         // Real Points
                         // Real Opponent Points
                         // Round
-
-                        //DELETE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                        Console.WriteLine(date + " X " +
-                            opponentName + " X " +
-                            opponentIndex + " X " +
-                            -1 + " X " +
-                            points + " X " +
-                            opponentPoints + " XXX " +
-                            confTournRound);
-                        //DELETE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
                         schedule.addRealConfTournGame(
                             date,
@@ -1541,16 +1518,6 @@ namespace College_Basketball_Simulator
                         // Real Opponent Points
                         // Round
 
-                        //DELETE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                        Console.WriteLine(date + " X " +
-                            opponentName + " X " +
-                            opponentIndex + " X " +
-                            -1 + " X " +
-                            points + " X " +
-                            opponentPoints + " XXX " +
-                            champTournRound);
-                        //DELETE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
                         schedule.addRealChampTournGame(
                             date,
                             opponentName,
@@ -1577,8 +1544,6 @@ namespace College_Basketball_Simulator
         private SimulationDirector importScheduleData(SimulationDirector simulationDirector)
         {
             //ONLY MAKE NEW RATINGS FILE IF NOT ON SAME DAY AS PREVIOUS
-
-            System.Windows.Forms.MessageBox.Show("SCHEDULE DATA");
 
             //FOR ALL TEAMS
             for (int teamIndex = 0; teamIndex < appResources.getLengthOfTeamNames(); teamIndex++)
@@ -1745,7 +1710,7 @@ namespace College_Basketball_Simulator
                     while (fileIndex < lines.Length)
                     {
                         //INITIALIZE INDEXES
-                        teamIndex = appResources.getTeamIndex(lines[fileIndex]);
+                        teamIndex = appResources.getTeamIndexFromTeamName(lines[fileIndex]);
                         fileIndex++;
 
                         //CREATE SCHEDULE DATA TABLE
@@ -2042,7 +2007,7 @@ namespace College_Basketball_Simulator
                         if (string.Compare(lines[fileIndex], " ###### ") == 0)
                         {
                             //SET TEAM INDEX
-                            teamIndex = appResources.getTeamIndex(lines[fileIndex + 1]);
+                            teamIndex = appResources.getTeamIndexFromTeamName(lines[fileIndex + 1]);
 
                             //SET OFFENSIVE AND DEFENSIVE RATINGS
                             simulationDirector.setOffensiveRating(teamIndex, Convert.ToDouble(lines[fileIndex + 2]));
@@ -2155,10 +2120,10 @@ namespace College_Basketball_Simulator
                     settingsDirector.scoringDistribution = Convert.ToInt32(lines[2]);
                     settingsDirector.simulationType = lines[3];
                     settingsDirector.setEarliestGameDate(Convert.ToDateTime(lines[4]));
-                    settingsDirector.setHighLowOffensiveRatings(Convert.ToDouble(lines[5]));
-                    settingsDirector.setHighLowOffensiveRatings(Convert.ToDouble(lines[6]));
-                    settingsDirector.setHighLowDefensiveRatings(Convert.ToDouble(lines[7]));
-                    settingsDirector.setHighLowDefensiveRatings(Convert.ToDouble(lines[8]));
+                    settingsDirector.setHighestOffensiveRating(Convert.ToDouble(lines[5]));
+                    settingsDirector.setLowestOffensiveRating(Convert.ToDouble(lines[6]));
+                    settingsDirector.setHighestDefensiveRating(Convert.ToDouble(lines[7]));
+                    settingsDirector.setLowestDefensiveRating(Convert.ToDouble(lines[8]));
                 } //END IF SETTINGS FILE
             } //END IF SAVE FOLDER 
 

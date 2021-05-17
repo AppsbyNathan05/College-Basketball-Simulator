@@ -68,21 +68,38 @@ namespace College_Basketball_Simulator
         private void setChampTournRankingsTeamIndexes(Team[] teamsArray)
         {
             //TEMP TOURNAMENT ARRAYS
+            //ORDER - CONFERENCE INDEX
             int[] arrayIntRanked32IndexesForConfChampsIndexes = new int[appResources.getLengthOfConferenceNames()];
+            //CONFERENCE INDEX - RATING
             double[] arrayDouble32ConfChampRatings = new double[appResources.getLengthOfConferenceNames()];
 
+            //INDEX - TEAM INDEX
             int[] arrayInt64ChampTournIndexes = new int[64];
+            //INDEX - RATING
             double[] arrayDouble64ChampTournRatings = new double[64];
+            //RANK - TEAM INDEX
             int[] arrayIntRanked64IndexesForChampTournIndexes = new int[64];
 
+            //INDEX - TEAM INDEX
             int[] arrayInt68ChampTournIndexes = new int[68];
+            //INDEX - RATING
             double[] arrayDouble68ChampTournRatings = new double[68];
+            //RANK TEAM INDEX
             int[] arrayIntRanked68IndexesForChampTournIndexes = new int[68];
 
             //CHAMPIONSHIP TOURNAMENT
+            //RANK - TEAM INDEX
             int[] arrayIntRanked64ChampTournIndexes = new int[64];
+            //RANK - SEED
             int[] arrayIntRanked64ChampTournSeeds = new int[64];
+            //RANK - REGION
             string[] arrayStringRanked64ChampTournRegions = new string[64];
+
+            //TEAM RANKS INDEXES
+            //TEAM INDEX - RANK
+            int[] arrayInt353TeamIndexes = new int[appResources.getLengthOfTeamNames()];
+            //RANK - TEAM INDEX
+            int[] arrayIntRanked353TeamIndexes = new int[appResources.getLengthOfTeamNames()];
 
             //SEEDED PLAY IN TEAMS
             int[] arrayIntSeededPlayInIndexes = new int[] { 0, 1, 4, 5 };
@@ -100,23 +117,36 @@ namespace College_Basketball_Simulator
                 updateRankings(teamsArray);
             } //END IF
 
+            //RANK TEAMS
+
             //TEAM RANKS INDEXES
-            int[] arrayInt353InitialRankIndexes = getOrderIndexes(tournamentContainer.get353Rankings(), appResources.getLengthOfTeamNames());
+            Array.Copy(getOrderIndexes(tournamentContainer.get353Rankings(), appResources.getLengthOfTeamNames()),
+                arrayInt353TeamIndexes,
+                appResources.getLengthOfTeamNames());
+
+            //ORDER TEAM INDEXES
+            for (int index = 0; index < arrayInt353TeamIndexes.Length; index++)
+            {
+                //RANK - TEAM INDEX 
+                arrayIntRanked353TeamIndexes[arrayInt353TeamIndexes[index]] = index;
+            }//END FOR
 
             //INITIALIZE VALUES
             //(so indexOf doesn't find garbage)
             for (int index = 0; index < arrayInt68ChampTournIndexes.Length; index++)
             {
+                //INDEX - TEAM INDEX
                 arrayInt68ChampTournIndexes[index] = -1;
             }//END FOR
 
             //SELECT CHAMPIONSHIP TOURNAMENT PARTICIPANTS--------------------------
 
-            //GET RATINGS
+            //GET CONFERENCE RATINGS
 
             //FOR ALL CONFERENCES
             for (int conferenceIndex = 0; conferenceIndex < appResources.getLengthOfConferenceNames(); conferenceIndex++)
             {
+                //CONFERENCE INDEX - RATING
                 arrayDouble32ConfChampRatings[conferenceIndex] =
                     tournamentContainer.get353Rankings()[tournamentContainer.get32ConfChampsIndexes()[conferenceIndex]];
             } //END FOR
@@ -133,10 +163,10 @@ namespace College_Basketball_Simulator
             //FOR ALL CONFERENCES
             for (int conferenceIndex = 0; conferenceIndex < appResources.getLengthOfConferenceNames(); conferenceIndex++)
             {
-                arrayInt68ChampTournIndexes[conferenceIndex] =
-                    tournamentContainer.get32ConfChampsIndexes()[
-                        arrayIntRanked32IndexesForConfChampsIndexes[conferenceIndex]
-                        ];
+                //INDEX - TEAM INDEX
+                arrayInt68ChampTournIndexes[
+                    arrayIntRanked32IndexesForConfChampsIndexes[conferenceIndex]
+                    ] = tournamentContainer.get32ConfChampsIndexes()[conferenceIndex];
             } //END FOR
 
             //SET PLAY IN CONFERENCE TOURNAMENT CHAMPIONS
@@ -157,14 +187,15 @@ namespace College_Basketball_Simulator
                 do
                 {
                     //IF NOT IN ARRAY
-                    if (Array.IndexOf(arrayInt68ChampTournIndexes, arrayInt353InitialRankIndexes[rankIndex]) == -1)
+                    if (Array.IndexOf(arrayInt68ChampTournIndexes, arrayIntRanked353TeamIndexes[rankIndex]) < 0)
                     {
-                        arrayInt68ChampTournIndexes[teamIndex] = arrayInt353InitialRankIndexes[rankIndex];
+                        //INDEX - TEAM INDEX
+                        arrayInt68ChampTournIndexes[teamIndex] = arrayIntRanked353TeamIndexes[rankIndex];
                         rankIndex++;
                         break;
                     }//END IF 
                     rankIndex++;
-                } while (rankIndex < arrayInt353InitialRankIndexes.Length); //END DO WHILE
+                } while (rankIndex < arrayIntRanked353TeamIndexes.Length); //END DO WHILE
 
             } //END FOR
 
@@ -184,6 +215,7 @@ namespace College_Basketball_Simulator
             //FOR ALL TOURNAMENT TEAMS
             for (int index = 0; index < arrayDouble68ChampTournRatings.Length; index++)
             {
+                //INDEX - RATING
                 arrayDouble68ChampTournRatings[index] = tournamentContainer.get353Rankings()[arrayInt68ChampTournIndexes[index]];
             } //END FOR
 
@@ -204,6 +236,7 @@ namespace College_Basketball_Simulator
             //FOR ALL SEEDED CONFERENCE CHAMP TEAMS
             for (int index = 0; index < appResources.getLengthOfConferenceNames() - 2; index++)
             {
+                //INDEX - TEAM INDEX
                 arrayInt64ChampTournIndexes[index] = arrayInt68ChampTournIndexes[index];
             } //END FOR
 
@@ -213,6 +246,7 @@ namespace College_Basketball_Simulator
             //FOR ALL AT LARGE SEEDED TEAMS
             for (int index = appResources.getLengthOfConferenceNames(); index < arrayInt64ChampTournIndexes.Length + 2; index++)
             {
+                //INDEX - TEAM INDEX
                 arrayInt64ChampTournIndexes[index - 2] = arrayInt68ChampTournIndexes[index];
             } //END FOR
 
@@ -221,6 +255,7 @@ namespace College_Basketball_Simulator
             //FOR ALL SEEDED TEAMS
             for (int index = 0; index < arrayDouble64ChampTournRatings.Length; index++)
             {
+                //INDEX - RATING
                 arrayDouble64ChampTournRatings[index] = tournamentContainer.get353Rankings()[arrayInt64ChampTournIndexes[index]];
             } //END FOR
 
@@ -237,10 +272,12 @@ namespace College_Basketball_Simulator
             for (int seedIndex = 0; seedIndex < 16; seedIndex += 4)
             {
                 //SET INDEXES IN RANKINGS
+                //RANK - TEAM INDEX
                 arrayIntRanked64ChampTournIndexes[seedIndex * 4] = arrayInt64ChampTournIndexes[arrayIntRanked64IndexesForChampTournIndexes[seedIndex * 4]];
                 arrayIntRanked64ChampTournIndexes[seedIndex * 4 + 1] = arrayInt64ChampTournIndexes[arrayIntRanked64IndexesForChampTournIndexes[seedIndex * 4 + 1]];
                 arrayIntRanked64ChampTournIndexes[seedIndex * 4 + 2] = arrayInt64ChampTournIndexes[arrayIntRanked64IndexesForChampTournIndexes[seedIndex * 4 + 2]];
                 arrayIntRanked64ChampTournIndexes[seedIndex * 4 + 3] = arrayInt64ChampTournIndexes[arrayIntRanked64IndexesForChampTournIndexes[seedIndex * 4 + 3]];
+                
                 //ZIG ZAG THROUGH SEEDS
                 if (seedIndex % 2 == 0)
                 {
@@ -249,12 +286,16 @@ namespace College_Basketball_Simulator
                     tournamentContainer.setRanked16ChampTournMidwestIndexes(seedIndex, arrayInt64ChampTournIndexes[arrayIntRanked64IndexesForChampTournIndexes[seedIndex * 4 + 1]]);
                     tournamentContainer.setRanked16ChampTournSouthIndexes(seedIndex, arrayInt64ChampTournIndexes[arrayIntRanked64IndexesForChampTournIndexes[seedIndex * 4 + 2]]);
                     tournamentContainer.setRanked16ChampTournEastIndexes(seedIndex, arrayInt64ChampTournIndexes[arrayIntRanked64IndexesForChampTournIndexes[seedIndex * 4 + 3]]);
+
                     //SET SEEDS IN 
+                    //RANK - SEED
                     arrayIntRanked64ChampTournSeeds[seedIndex * 4] = seedIndex;
                     arrayIntRanked64ChampTournSeeds[seedIndex * 4 + 1] = seedIndex;
                     arrayIntRanked64ChampTournSeeds[seedIndex * 4 + 2] = seedIndex;
                     arrayIntRanked64ChampTournSeeds[seedIndex * 4 + 3] = seedIndex;
+
                     //SET REGIONS IN RANKINGS
+                    //RANK - REGION
                     arrayStringRanked64ChampTournRegions[seedIndex * 4] = appResources.getChampTounRegionTypeText(0);
                     arrayStringRanked64ChampTournRegions[seedIndex * 4 + 1] = appResources.getChampTounRegionTypeText(1);
                     arrayStringRanked64ChampTournRegions[seedIndex * 4 + 2] = appResources.getChampTounRegionTypeText(2);
@@ -267,12 +308,16 @@ namespace College_Basketball_Simulator
                     tournamentContainer.setRanked16ChampTournMidwestIndexes(seedIndex, arrayInt64ChampTournIndexes[arrayIntRanked64IndexesForChampTournIndexes[seedIndex * 4 + 2]]);
                     tournamentContainer.setRanked16ChampTournSouthIndexes(seedIndex, arrayInt64ChampTournIndexes[arrayIntRanked64IndexesForChampTournIndexes[seedIndex * 4 + 1]]);
                     tournamentContainer.setRanked16ChampTournEastIndexes(seedIndex, arrayInt64ChampTournIndexes[arrayIntRanked64IndexesForChampTournIndexes[seedIndex * 4]]);
+
                     //SET SEEDS IN RANKINGS
+                    //RANK - SEED
                     arrayIntRanked64ChampTournSeeds[seedIndex * 4 + 3] = seedIndex;
                     arrayIntRanked64ChampTournSeeds[seedIndex * 4 + 2] = seedIndex;
                     arrayIntRanked64ChampTournSeeds[seedIndex * 4 + 1] = seedIndex;
                     arrayIntRanked64ChampTournSeeds[seedIndex * 4] = seedIndex;
+
                     //SET REGIONS IN RANKINGS
+                    //RANK - REGION
                     arrayStringRanked64ChampTournRegions[seedIndex * 4 + 3] = appResources.getChampTounRegionTypeText(0);
                     arrayStringRanked64ChampTournRegions[seedIndex * 4 + 2] = appResources.getChampTounRegionTypeText(1);
                     arrayStringRanked64ChampTournRegions[seedIndex * 4 + 1] = appResources.getChampTounRegionTypeText(2);
@@ -366,9 +411,9 @@ namespace College_Basketball_Simulator
                 do
                 {
                     //IF NOT IN ARRAY
-                    if (Array.IndexOf(arrayInt68ChampTournIndexes, arrayInt353InitialRankIndexes[rankIndex]) == -1)
+                    if (Array.IndexOf(arrayInt68ChampTournIndexes, arrayIntRanked353TeamIndexes[rankIndex]) < 0)
                     {
-                        tournamentContainer.setRanked353ChampTournReturnIndexes(teamIndex, arrayInt353InitialRankIndexes[rankIndex]);
+                        tournamentContainer.setRanked353ChampTournReturnIndexes(teamIndex, arrayIntRanked353TeamIndexes[rankIndex]);
                         rankIndex++;
                         break;
                     }//END IF 
@@ -399,7 +444,7 @@ namespace College_Basketball_Simulator
             } //END FOR
         } //END
 
-        public void setConferenceChampIndexes(Team[] teamArray, Conference[] conferenceArray)
+        public void setConferenceChampIndexes(Team[] teamsArray, Conference[] conferenceArray)
         {
             //FOR ALL CONFERENCES
             for (int conferenceIndex = 0; conferenceIndex < appResources.getLengthOfConferenceNames(); conferenceIndex++)
@@ -413,17 +458,17 @@ namespace College_Basketball_Simulator
                 }
                 else
                 {
-                    setConferenceChampIndex(teamArray, conferenceIndex);
+                    setConferenceChampIndex(teamsArray, conferenceIndex);
                 }//END IF
             } //END FOR
         } //END
 
-        private void setConferenceChampIndex(Team[] teamArray, int conferenceIndex)
+        private void setConferenceChampIndex(Team[] teamsArray, int conferenceIndex)
         {
             double highestValue = 0.0;
             int index = 0;
 
-            double[] arrayDoubleOrderValues = getConferenceOrderValues(teamArray, conferenceIndex);
+            double[] arrayDoubleOrderValues = getConferenceOrderValues(teamsArray, conferenceIndex);
 
             for (int teamIndex = 0; teamIndex < arrayDoubleOrderValues.Length; teamIndex++)
             {
@@ -434,7 +479,7 @@ namespace College_Basketball_Simulator
                 }
             }//END FOR TEAMS
 
-            tournamentContainer.set32ConfChampsIndexes(conferenceIndex, index);
+            tournamentContainer.set32ConfChampsIndexes(conferenceIndex, appResources.getConferenceTeamIndexes(conferenceIndex)[index]);
         } //END
 
         //---------------------------------------------------------------------
@@ -497,7 +542,11 @@ namespace College_Basketball_Simulator
         public double[] getConferenceOrderValues(Team[] teamsArray, int confIndex)
         {
             //GET CONFERENCE TEAM INDEXES
-            int[] arrayIntConferenceTeamIndexes = appResources.getConferenceTeamIndexes(confIndex);
+            int[] arrayIntConferenceTeamIndexes = new int[appResources.getConferenceTeamIndexes(confIndex).Length];
+
+            Array.Copy(appResources.getConferenceTeamIndexes(confIndex),
+                arrayIntConferenceTeamIndexes,
+                appResources.getConferenceTeamIndexes(confIndex).Length);
 
             //ARRAY OF CONFERENCE WIN PERCENTAGES
             double[] arrayDoubleOrderValues = new double[arrayIntConferenceTeamIndexes.Length];
@@ -506,9 +555,16 @@ namespace College_Basketball_Simulator
             //ADD CONFERENCE WIN PERCENTAGE TO ARRAY
             for (int index = 0; index < arrayIntConferenceTeamIndexes.Length; index++)
             {
-                arrayDoubleOrderValues[index] = (double)teamsArray[arrayIntConferenceTeamIndexes[index]].getConferenceWins() /
-                (double)(teamsArray[arrayIntConferenceTeamIndexes[index]].getConferenceLosses() +
-                teamsArray[arrayIntConferenceTeamIndexes[index]].getConferenceWins());
+                if (teamsArray[arrayIntConferenceTeamIndexes[index]].getConferenceWins() > 0)
+                {
+                    arrayDoubleOrderValues[index] = (double)teamsArray[arrayIntConferenceTeamIndexes[index]].getConferenceWins() /
+                            (double)(teamsArray[arrayIntConferenceTeamIndexes[index]].getConferenceLosses() +
+                            teamsArray[arrayIntConferenceTeamIndexes[index]].getConferenceWins()); 
+                }
+                else 
+                {
+                    arrayDoubleOrderValues[index] = 0.0;
+                }//END IF
             }//END FOR
 
             return arrayDoubleOrderValues;
@@ -551,9 +607,16 @@ namespace College_Basketball_Simulator
             //WIN PERCENTAGE
             for (int teamIndex = 0; teamIndex < appResources.getLengthOfTeamNames(); teamIndex++)
             {
-                arrayDoubleWinPercentRankings[teamIndex] = (double)teamsArray[teamIndex].getWins() /
-                    (double)(teamsArray[teamIndex].getLosses() +
-                    teamsArray[teamIndex].getWins());
+                if (teamsArray[teamIndex].getWins() > 0)
+                {
+                    arrayDoubleWinPercentRankings[teamIndex] = (double)teamsArray[teamIndex].getWins() /
+                                (double)(teamsArray[teamIndex].getLosses() +
+                                teamsArray[teamIndex].getWins());
+                }
+                else 
+                {
+                    arrayDoubleWinPercentRankings[teamIndex] = 0.0;
+                }//END IF
             }//END FOR
 
             //CALCULATE SECOND RATING
@@ -579,7 +642,14 @@ namespace College_Basketball_Simulator
             //AVERAGE WIN PERCENT AND STRENGTH OF SCHEDULE
             for (int teamIndex = 0; teamIndex < appResources.getLengthOfTeamNames(); teamIndex++)
             {
-                arrayDoubleSOSRankings[teamIndex] = (arrayDoubleWinPercentRankings[teamIndex] + arrayDoubleSOSRankings[teamIndex]) / 2.0;
+                if ((arrayDoubleWinPercentRankings[teamIndex] + arrayDoubleSOSRankings[teamIndex]) > 0.0)
+                {
+                    arrayDoubleSOSRankings[teamIndex] = (arrayDoubleWinPercentRankings[teamIndex] + arrayDoubleSOSRankings[teamIndex]) / 2.0;
+                }
+                else
+                {
+                    arrayDoubleSOSRankings[teamIndex] = 0.0;
+                }//END IF
             }//END FOR
 
             //CALCULATE SIXTH RATING
@@ -661,7 +731,14 @@ namespace College_Basketball_Simulator
                     }//END IF
                 }//END FOR
 
-                arrayDoubleSOSRankings[teamIndex] = winsValue / (winsValue + lossesValue);
+                if (winsValue > 0.0)
+                {
+                    arrayDoubleSOSRankings[teamIndex] = winsValue / (winsValue + lossesValue); 
+                }
+                else
+                {
+                    arrayDoubleSOSRankings[teamIndex] = 0.0;
+                }//END IF
 
                 if (endLoop)
                 {

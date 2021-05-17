@@ -3538,8 +3538,8 @@
             this.tableLayoutPanelBTournProList.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.tableLayoutPanelBTournProList.Name = "tableLayoutPanelBTournProList";
             this.tableLayoutPanelBTournProList.RowCount = 1;
-            this.tableLayoutPanelBTournProList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 300F));
-            this.tableLayoutPanelBTournProList.Size = new System.Drawing.Size(1263, 300);
+            this.tableLayoutPanelBTournProList.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1000F));
+            this.tableLayoutPanelBTournProList.Size = new System.Drawing.Size(1263, 1000);
             this.tableLayoutPanelBTournProList.TabIndex = 1;
             // 
             // dataGridViewChampTournProListTournProList
@@ -3549,7 +3549,7 @@
             this.dataGridViewChampTournProListTournProList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewChampTournProListTournProList.Location = new System.Drawing.Point(62, 3);
             this.dataGridViewChampTournProListTournProList.Name = "dataGridViewChampTournProListTournProList";
-            this.dataGridViewChampTournProListTournProList.Size = new System.Drawing.Size(1138, 150);
+            this.dataGridViewChampTournProListTournProList.Size = new System.Drawing.Size(1138, 800);
             this.dataGridViewChampTournProListTournProList.TabIndex = 0;
             this.dataGridViewChampTournProListTournProList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewChampTournProListTournProList_CellContentClick);
             // 
@@ -3798,7 +3798,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonWestTournProBrac.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F);
-            this.buttonWestTournProBrac.Location = new System.Drawing.Point(101, 84);
+            this.buttonWestTournProBrac.Location = new System.Drawing.Point(236, 84);
             this.buttonWestTournProBrac.Margin = new System.Windows.Forms.Padding(0);
             this.buttonWestTournProBrac.Name = "buttonWestTournProBrac";
             this.buttonWestTournProBrac.Size = new System.Drawing.Size(250, 64);
@@ -3813,7 +3813,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonMidwestTournProBrac.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F);
-            this.buttonMidwestTournProBrac.Location = new System.Drawing.Point(101, 168);
+            this.buttonMidwestTournProBrac.Location = new System.Drawing.Point(236, 168);
             this.buttonMidwestTournProBrac.Margin = new System.Windows.Forms.Padding(0);
             this.buttonMidwestTournProBrac.Name = "buttonMidwestTournProBrac";
             this.buttonMidwestTournProBrac.Size = new System.Drawing.Size(250, 64);
@@ -3828,7 +3828,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonEastTournProBrac.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F);
-            this.buttonEastTournProBrac.Location = new System.Drawing.Point(371, 84);
+            this.buttonEastTournProBrac.Location = new System.Drawing.Point(506, 84);
             this.buttonEastTournProBrac.Margin = new System.Windows.Forms.Padding(0);
             this.buttonEastTournProBrac.Name = "buttonEastTournProBrac";
             this.buttonEastTournProBrac.Size = new System.Drawing.Size(250, 64);
@@ -3843,7 +3843,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonSouthTournProBrac.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F);
-            this.buttonSouthTournProBrac.Location = new System.Drawing.Point(371, 168);
+            this.buttonSouthTournProBrac.Location = new System.Drawing.Point(506, 168);
             this.buttonSouthTournProBrac.Margin = new System.Windows.Forms.Padding(0);
             this.buttonSouthTournProBrac.Name = "buttonSouthTournProBrac";
             this.buttonSouthTournProBrac.Size = new System.Drawing.Size(250, 64);
@@ -3858,7 +3858,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonFullBracketTournProBrac.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F);
-            this.buttonFullBracketTournProBrac.Location = new System.Drawing.Point(641, 84);
+            this.buttonFullBracketTournProBrac.Location = new System.Drawing.Point(776, 84);
             this.buttonFullBracketTournProBrac.Margin = new System.Windows.Forms.Padding(0);
             this.buttonFullBracketTournProBrac.Name = "buttonFullBracketTournProBrac";
             this.buttonFullBracketTournProBrac.Size = new System.Drawing.Size(250, 64);
@@ -3873,7 +3873,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonListViewTournProBrac.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F);
-            this.buttonListViewTournProBrac.Location = new System.Drawing.Point(641, 0);
+            this.buttonListViewTournProBrac.Location = new System.Drawing.Point(776, 0);
             this.buttonListViewTournProBrac.Margin = new System.Windows.Forms.Padding(0);
             this.buttonListViewTournProBrac.Name = "buttonListViewTournProBrac";
             this.buttonListViewTournProBrac.Size = new System.Drawing.Size(250, 64);
@@ -3888,7 +3888,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonSweet16TournProBrac.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F);
-            this.buttonSweet16TournProBrac.Location = new System.Drawing.Point(641, 168);
+            this.buttonSweet16TournProBrac.Location = new System.Drawing.Point(776, 168);
             this.buttonSweet16TournProBrac.Margin = new System.Windows.Forms.Padding(0);
             this.buttonSweet16TournProBrac.Name = "buttonSweet16TournProBrac";
             this.buttonSweet16TournProBrac.Size = new System.Drawing.Size(250, 64);

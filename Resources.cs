@@ -662,20 +662,22 @@ namespace College_Basketball_Simulator
         //TEAMS----------------------------------------------------------------
         //---------------------------------------------------------------------
 
-        //LENGTH---------------------------------------------------------------
+        //TEAMS LENGTH---------------------------------------------------------
 
         public int getLengthOfTeamNames()
         {
             return arrayStringTeamNames.Length;
         } //END
 
-        //STRING---------------------------------------------------------------
+        //TEAM NAME------------------------------------------------------------
 
+        //TEAM INDEX -> TEAM NAME
         public string getTeamName(int teamIndex)
         {
             return arrayStringTeamNames[teamIndex];
         } //END
 
+        //TEAM ID -> TEAM NAME
         public string getTeamName(string id)
         {
             //RETURNS TEAM NAME OF CORESPONDING TEAM ID
@@ -693,14 +695,18 @@ namespace College_Basketball_Simulator
 
         } //END
 
+        //TEAM ID--------------------------------------------------------------
+
+        //TEAM INDEX -> TEAM ID
         public string getESPNTeamID(int teamIndex)
         {
             return arrayStringESPNTeamIDs[teamIndex];
         } //END
 
-        //INDEX OF-------------------------------------------------------------
+        //TEAM INDEX-----------------------------------------------------------
 
-        public int getTeamIndex(string teamName)
+        //TEAM NAME-> TEAM INDEX
+        public int getTeamIndexFromTeamName(string teamName)
         {
             //RETURNS TEAM NAME OF CORESPONDING TEAM ID
 
@@ -725,49 +731,38 @@ namespace College_Basketball_Simulator
 
         } //END
 
-        //---------------------------------------------------------------------
-        //CONFERENCE TEAMS-----------------------------------------------------
-        //---------------------------------------------------------------------
+        //TEAM ID -> TEAM INDEX
+        public int getTeamIndexFromTeamID(string teamID)
+        {
+            //RETURN TEAM INDEX
+            return Array.IndexOf(arrayStringESPNTeamIDs, teamID);
+        } //END
 
+        //ARRAY TEAM INDEXES---------------------------------------------------
+
+        //CONFERENCE NAME -> ARRAY TEAM INDEXES
         public int[] getConferenceTeamIndexes(string conferenceName)
         {
             //RETURN CONFERENCE OF TEAM INDEXES
             return arrayTeamIndexesByConference[Array.IndexOf(arrayStringFindFullConferenceNames, conferenceName)];
         } //END
 
+        //CONFERENCE INDEX -> ARRAY TEAM INDEXES
         public int[] getConferenceTeamIndexes(int conferenceIndex)
         {
             //RETURN CONFERENCE OF TEAM INDEXES
             return arrayTeamIndexesByConference[conferenceIndex];
         } //END
 
-        public int getConferenceTeamIndex(int conferenceIndex, int teamIndex)
+        //---------------------------------------------------------------------
+        //CONFERENCES----------------------------------------------------------
+        //---------------------------------------------------------------------
+
+        //LENGTH---------------------------------------------------------------
+
+        public int getLengthOfConferenceNames()
         {
-            //RETURN CONFERENCE OF TEAM INDEXES
-            return arrayTeamIndexesByConference[conferenceIndex][teamIndex];
-        } //END
-
-        public string[] getConferenceTeams(string conferenceName)
-        {
-            //FIND CONFERENCE INDEX
-            int conferenceTeamsIndex = Array.IndexOf(arrayStringFindFullConferenceNames, conferenceName);
-
-            //GET NUMBER OF TEAMS IN CONFERENCE
-            int conferenceTeamsLength = arrayTeamIndexesByConference[conferenceTeamsIndex].Length;
-
-            //CREATE RETURN ARRAY
-            string[] conferenceTeams = new string[conferenceTeamsLength];
-
-            //FOR ALL TEAMS IN CONFERENCE
-            //ADD TEAM NAME
-            for (int teamIndex = 0; teamIndex < conferenceTeamsLength; teamIndex++)
-            {
-                //ADD TEAM NAME
-                conferenceTeams[teamIndex] = arrayStringTeamNames[arrayTeamIndexesByConference[conferenceTeamsIndex][teamIndex]];
-            } //END FOR
-
-            //RETURN CONFERENCE OF TEAM INDEXES
-            return conferenceTeams;
+            return arrayStringFindFullConferenceNames.Length;
         } //END
 
         //SAME CONFERENCE------------------------------------------------------
@@ -785,29 +780,23 @@ namespace College_Basketball_Simulator
             }//END IF
         } //END
 
-        //---------------------------------------------------------------------
-        //CONFERENCES----------------------------------------------------------
-        //---------------------------------------------------------------------
+        //CONFERENCE ABBREVIATION----------------------------------------------
 
-        //LENGTH---------------------------------------------------------------
-
-        public int getLengthOfConferenceNames()
-        {
-            return arrayStringFindFullConferenceNames.Length;
-        } //END
-
-        //STRING---------------------------------------------------------------
-
+        //TEAM INDEX -> CONFERENCE ABBREVIATION
         public string getConferenceAbrv(int teamIndex)
         {
             return arrayStringConferenceAbrvByTeam[teamIndex];
         } //END
 
+        //CONFERENCE NAME------------------------------------------------------
+
+        //CONFERENCE INDEX -> CONFERENCE NAME
         public string getConferenceName(int conferenceIndex)
         {
             return arrayStringFindFullConferenceNames[conferenceIndex];
         } //END
 
+        //TEAM INDEX -> CONFERENCE NAME
         public string getTeamsConferenceName(int teamIndex)
         {
             //RETURNS THE CONFERENCE NAME FOR ANY TEAM INDEX
@@ -834,6 +823,7 @@ namespace College_Basketball_Simulator
 
         } //END
 
+        //TEAM NAME -> CONFERENCE NAME
         public string getTeamsConferenceName(string teamName)
         {
             if (string.Compare(teamName, "DIV II SCHOOL") == 0)
@@ -850,12 +840,20 @@ namespace College_Basketball_Simulator
             }
         } //END
 
-        //INDEX OF-------------------------------------------------------------
+        //CONFERENCE INDEX-----------------------------------------------------
 
+        //CONFERENCE NAME -> CONFERENCE INDEX
         public int getConferenceIndex(string conferenceName)
         {
             //RETURNS THE CONFERENCE INDEX
             return Array.IndexOf(arrayStringFindFullConferenceNames, conferenceName);
+        } //END
+
+        //TEAM INDEX -> CONFERENCE INDEX
+        public int getConferenceIndex(int teamIndex)
+        {
+            //RETURNS THE CONFERENCE INDEX
+            return Array.IndexOf(arrayStringFindAbrvConferenceNames, arrayStringConferenceAbrvByTeam[teamIndex]);
         } //END
 
         //---------------------------------------------------------------------

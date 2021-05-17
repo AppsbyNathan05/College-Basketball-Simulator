@@ -45,8 +45,8 @@ namespace College_Basketball_Simulator
         public SettingsDirector()
         {
             //DEFAULT SETTINGS
-            minScoringAverage = 35;
-            maxScoringAverage = 105;
+            minScoringAverage = 50;
+            maxScoringAverage = 95;
             scoringDistribution = 40;
             simulationType = "";
         } //END
@@ -142,14 +142,14 @@ namespace College_Basketball_Simulator
         {
             //IF OFFENSIVE RATING HIGHER
             //SET NEW HIGH OFFENSIVE RATING
-            if(highestOffensiveRating > offensiveRating)
+            if (highestOffensiveRating < offensiveRating)
             {
                 highestOffensiveRating = offensiveRating;
             } //END IF
 
             //IF OFFENSIVE RATING LOWER
             //SET NEW LOW OFFENSIVE RATING
-            if (lowestOffensiveRating < offensiveRating)
+            if (lowestOffensiveRating > offensiveRating)
             {
                 lowestOffensiveRating = offensiveRating;
             } //END IF
@@ -161,17 +161,49 @@ namespace College_Basketball_Simulator
         {
             //IF DEFENSIVE RATING HIGHER
             //SET NEW HIGH DEFENSIVE RATING
-            if (highestDefensiveRating > defensiveRating)
+            if (highestDefensiveRating < defensiveRating)
             {
                 highestDefensiveRating = defensiveRating;
             } //END IF
 
             //IF DEFENSIVE RATING LOWER
             //SET NEW LOW DEFENSIVE RATING
-            if (lowestDefensiveRating < defensiveRating)
+            if (lowestDefensiveRating > defensiveRating)
             {
                 lowestDefensiveRating = defensiveRating;
             } //END IF
+        } //END
+
+        //SET HIGHEST OFFENSIVE RATING-----------------------------------------
+
+        public void setHighestOffensiveRating(double offensiveRating)
+        {
+            //ONLY USE WHEN LOADING
+            highestOffensiveRating = offensiveRating;
+        } //END
+
+        //SET LOWEST OFFENSIVE RATING------------------------------------------
+
+        public void setLowestOffensiveRating(double offensiveRating)
+        {
+            //ONLY USE WHEN LOADING
+            lowestOffensiveRating = offensiveRating;
+        } //END
+
+        //SET HIGHEST DEFENSIVE RATING-----------------------------------------
+
+        public void setHighestDefensiveRating(double defensiveRating)
+        {
+            //ONLY USE WHEN LOADING
+            highestDefensiveRating = defensiveRating;
+        } //END
+
+        //SET LOWEST DEFENSIVE RATING------------------------------------------
+
+        public void setLowestDefensiveRating(double defensiveRating)
+        {
+            //ONLY USE WHEN LOADING
+            lowestDefensiveRating = defensiveRating;
         } //END
 
         //---------------------------------------------------------------------
