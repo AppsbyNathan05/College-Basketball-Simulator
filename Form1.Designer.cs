@@ -4638,7 +4638,6 @@
             this.Name = "Form1";
             this.Text = "College Basketball Simulator";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.panelMainMenuIntro.ResumeLayout(false);
             this.tableLayoutPanelAMainInt.ResumeLayout(false);
             this.tableLayoutPanelHeaderMainInt.ResumeLayout(false);

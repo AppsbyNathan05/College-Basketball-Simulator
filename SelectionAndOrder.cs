@@ -96,8 +96,6 @@ namespace College_Basketball_Simulator
             string[] arrayStringRanked64ChampTournRegions = new string[64];
 
             //TEAM RANKS INDEXES
-            //TEAM INDEX - RANK
-            int[] arrayInt353TeamIndexes = new int[appResources.getLengthOfTeamNames()];
             //RANK - TEAM INDEX
             int[] arrayIntRanked353TeamIndexes = new int[appResources.getLengthOfTeamNames()];
 
@@ -121,15 +119,8 @@ namespace College_Basketball_Simulator
 
             //TEAM RANKS INDEXES
             Array.Copy(getOrderIndexes(tournamentContainer.get353Rankings(), appResources.getLengthOfTeamNames()),
-                arrayInt353TeamIndexes,
+                arrayIntRanked353TeamIndexes,
                 appResources.getLengthOfTeamNames());
-
-            //ORDER TEAM INDEXES
-            for (int index = 0; index < arrayInt353TeamIndexes.Length; index++)
-            {
-                //RANK - TEAM INDEX 
-                arrayIntRanked353TeamIndexes[arrayInt353TeamIndexes[index]] = index;
-            }//END FOR
 
             //INITIALIZE VALUES
             //(so indexOf doesn't find garbage)
@@ -269,7 +260,7 @@ namespace College_Basketball_Simulator
             //SET TOURNAMENT SEEDS-------------------------------------------------
 
             //SET SEEDS
-            for (int seedIndex = 0; seedIndex < 16; seedIndex += 4)
+            for (int seedIndex = 0; seedIndex < 16; seedIndex++)
             {
                 //SET INDEXES IN RANKINGS
                 //RANK - TEAM INDEX
@@ -323,6 +314,7 @@ namespace College_Basketball_Simulator
                     arrayStringRanked64ChampTournRegions[seedIndex * 4 + 1] = appResources.getChampTounRegionTypeText(2);
                     arrayStringRanked64ChampTournRegions[seedIndex * 4] = appResources.getChampTounRegionTypeText(3);
                 }//END IF
+
             }//END FOR
 
             //FILL TOP 68 OVERALL RANKINGS-----------------------------------------
@@ -675,9 +667,6 @@ namespace College_Basketball_Simulator
             //LOSSES VALUE
             double lossesValue = 0.0;
 
-            //EXIT LOOP
-            Boolean endLoop = false;
-
             //FOR ALL TEAMS
             //CALCULATE SECOND RATING
             for (int teamIndex = 0; teamIndex < appResources.getLengthOfTeamNames(); teamIndex++)
@@ -726,7 +715,6 @@ namespace College_Basketball_Simulator
                     }
                     else
                     {
-                        endLoop = true;
                         break;
                     }//END IF
                 }//END FOR
@@ -738,11 +726,6 @@ namespace College_Basketball_Simulator
                 else
                 {
                     arrayDoubleSOSRankings[teamIndex] = 0.0;
-                }//END IF
-
-                if (endLoop)
-                {
-                    break;
                 }//END IF
 
             }//END FOR

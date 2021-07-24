@@ -1914,7 +1914,11 @@ namespace College_Basketball_Simulator
                         schedule.DisposeSchedule();
 
                     } //END WHILE LINES IN FILE
-                
+
+                    Console.WriteLine(" ");
+                    Console.WriteLine("SCHEDULE LOADED");
+                    Console.WriteLine(" ");
+
                 } //END IF SCHEDULE FILE
             } //END IF SAVE FOLDER
 
@@ -2027,6 +2031,10 @@ namespace College_Basketball_Simulator
                         } //END IF START FO RATINGS ENTRY
                     } //END WHILE LINES IN FILE
 
+                    Console.WriteLine(" ");
+                    Console.WriteLine("RATINGS LOADED");
+                    Console.WriteLine(" ");
+
                 } //END IF RATINGS FILE
 
             } //END IF SAVE FOLDER
@@ -2058,6 +2066,7 @@ namespace College_Basketball_Simulator
 
         public Boolean saveSettings(SettingsDirector settingsDirector, string saveFolderFilePath)
         {
+
             //IF SAVE FOLDER SET
             if (setSaveFolder(saveFolderFilePath))
             {
@@ -2083,6 +2092,10 @@ namespace College_Basketball_Simulator
                     writer.WriteLine(settingsDirector.getHighestDefensiveRating());
                     writer.WriteLine(settingsDirector.getLowestDefensiveRating());
                 } //END USING WRITE SETTINGS TO FILE
+
+                Console.WriteLine(" ");
+                Console.WriteLine("SETTINGS SAVED");
+                Console.WriteLine(" ");
 
                 //RETURN SUCCESS
                 return true;
@@ -2124,6 +2137,11 @@ namespace College_Basketball_Simulator
                     settingsDirector.setLowestOffensiveRating(Convert.ToDouble(lines[6]));
                     settingsDirector.setHighestDefensiveRating(Convert.ToDouble(lines[7]));
                     settingsDirector.setLowestDefensiveRating(Convert.ToDouble(lines[8]));
+
+                    Console.WriteLine(" ");
+                    Console.WriteLine("SETTINGS LOADED");
+                    Console.WriteLine(" ");
+
                 } //END IF SETTINGS FILE
             } //END IF SAVE FOLDER 
 
@@ -2174,6 +2192,9 @@ namespace College_Basketball_Simulator
 
         public Boolean setSaveFolder(string newSaveFolderFilePath)
         {
+            //CURRENT FILE LOCATION
+            //C:\Users\know1\Desktop\NCAA BB Sim\Test Folder 5\
+
             //IF DOES NOT ENDS WITH \
             //APPEND
             if (!newSaveFolderFilePath.EndsWith("\\"))

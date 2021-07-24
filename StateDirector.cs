@@ -124,31 +124,49 @@ namespace College_Basketball_Simulator
             {
                 // 0 NoDataState 
                 boolNoDataState = true;
+                Console.WriteLine(" ");
+                Console.WriteLine("NO DATA STATE SET");
+                Console.WriteLine(" ");
             }
             else if (string.Compare(state, appResources.getStateText(1)) == 0)
             {
                 // 1 PreseasonState
                 boolPreseasonState = true;
+                Console.WriteLine(" ");
+                Console.WriteLine("PRESEASON STATE SET");
+                Console.WriteLine(" ");
             }
             else if (string.Compare(state, appResources.getStateText(2)) == 0)
             {
                 // 2 SeasonState 
                 boolSeasonState = true;
+                Console.WriteLine(" ");
+                Console.WriteLine("SEASON STATE SET");
+                Console.WriteLine(" ");
             }
             else if (string.Compare(state, appResources.getStateText(3)) == 0)
             {
                 // 3 ConferenceTournamentState 
                 boolConferenceTournamentState = true;
+                Console.WriteLine(" ");
+                Console.WriteLine("CONFERENCE TOURNAMENT STATE SET");
+                Console.WriteLine(" ");
             }
             else if (string.Compare(state, appResources.getStateText(4)) == 0)
             {
                 // 4 ChampionshipTournamentState 
                 boolChampionshipTournamentState = true;
+                Console.WriteLine(" ");
+                Console.WriteLine("CHAMPIONSHIP TOURNAMENT STATE SET");
+                Console.WriteLine(" ");
             }
             else if (string.Compare(state, appResources.getStateText(5)) == 0)
             {
                 // 5 PostSeasonState
                 boolPostSeasonState = true;
+                Console.WriteLine(" ");
+                Console.WriteLine("POSTSEASON STATE SET");
+                Console.WriteLine(" ");
             }
             else
             {

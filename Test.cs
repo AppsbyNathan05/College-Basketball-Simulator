@@ -32,7 +32,11 @@ namespace College_Basketball_Simulator
 
             //test.test1();
 
-            test.scoreAdjustmentTest();
+            //test.scoreAdjustmentTest();
+
+            //test.orderIndexesTest();
+
+            //test.randomTest();
 
         }
 
@@ -63,6 +67,7 @@ namespace College_Basketball_Simulator
         //SCORE ADJUSTMENT TEST------------------------------------------------
         //---------------------------------------------------------------------
 
+        #region ScoreAdjustmentTestRegion
         public void scoreAdjustmentTest()
         {
             int[] scores = new int[41];
@@ -188,7 +193,136 @@ namespace College_Basketball_Simulator
             //RETURN LAST ADJUSTMENT
             return listScoringDistributionRange[listScoringDistributionRange.Count - 1];
 
-        } //END
+        } //END 
+        #endregion
+
+        //---------------------------------------------------------------------
+        //GET ORDER INDEXES TEST-----------------------------------------------
+        //---------------------------------------------------------------------
+
+        #region OrderIndexesTest
+        public void orderIndexesTest()
+        {
+            double[] arrayDoubleOrderValues = new double[] { 3.0, 10.0, 5.0, 7.0, 1.0 };
+
+            int[] orderArray = new int[arrayDoubleOrderValues.Length];
+
+            getOrderIndexes(arrayDoubleOrderValues, arrayDoubleOrderValues.Length);
+
+            Array.Copy(getOrderIndexes(arrayDoubleOrderValues, arrayDoubleOrderValues.Length),
+                orderArray,
+                arrayDoubleOrderValues.Length);
+
+            for (int index = 0; index < orderArray.Length; index++)
+            {
+                Console.WriteLine(index + " " + arrayDoubleOrderValues[orderArray[index]]);
+            }//END FOR
+
+        }
+
+        private int[] getOrderIndexes(double[] arrayDoubleOrderValues, int orderLength)
+        {
+            //ORDER ARRAY
+            int[] arrayIntOrder = new int[orderLength];
+
+            //INSERT TEAM INDEX
+            int insertTeamArrayIndex = 0;
+
+            //TEMP TEAM INDEX
+            int tempTeamIndex = 0;
+
+            //FOR ALL TEAMS
+            //SET ORDER
+            for (int teamIndex = 0; teamIndex < arrayIntOrder.Length; teamIndex++)
+            {
+                //SET CURRENT INSERT TEAM
+                insertTeamArrayIndex = teamIndex;
+
+                //FOR ALL FILLED ORDER ARRAY
+                //FIND PLACEMENT
+                for (int orderIndex = 0; orderIndex < teamIndex; orderIndex++)
+                {
+                    //IF BETTER RANKING
+                    //SWITCH
+                    if (arrayDoubleOrderValues[insertTeamArrayIndex] >
+                        arrayDoubleOrderValues[arrayIntOrder[orderIndex]])
+                    {
+                        //SET TEMP TEAM INDEX
+                        tempTeamIndex = insertTeamArrayIndex;
+
+                        //RESET CURRENT INSERT TEAM
+                        insertTeamArrayIndex = arrayIntOrder[orderIndex];
+
+                        //SET NEW ORDER
+                        arrayIntOrder[orderIndex] = tempTeamIndex;
+                    }//END IF
+
+                }//END FOR
+
+                //ADD TEAM TO ORDER
+                arrayIntOrder[teamIndex] = insertTeamArrayIndex;
+
+            }//END FOR
+
+            return arrayIntOrder;
+
+        }// END 
+        #endregion
+
+        //---------------------------------------------------------------------
+        //GET ORDER INDEXES TEST-----------------------------------------------
+        //---------------------------------------------------------------------
+
+        #region RandomTest
+        public void randomTest()
+        {
+            int probability;
+
+            int high = 0;
+            int low = 10000;
+
+            for (int index = 0; index < 1000; index++)
+            {
+                //DISTRIBUTION NUMBER
+                probability = getRandom();
+
+                Console.WriteLine(" " + probability);
+
+            }//END FOR
+
+            for (int index = 0; index < 40000; index++)
+            {
+                //DISTRIBUTION NUMBER
+                probability = getRandom();
+
+                if (high < probability)
+                {
+                    high = probability;
+                }//END IF
+
+                if (low > probability)
+                {
+                    low = probability;
+                }//END IF
+
+            }//END FOR
+
+            Console.WriteLine("HIGH " + high);
+
+            Console.WriteLine("LOW " + low);
+
+        } 
+
+        private int getRandom()
+        {
+            //RANDOM NUMBER GENERATOR
+            Random random = new Random();
+
+            int probability = random.Next(5001 + (40 * 4 - 1));
+
+            return probability;
+        }
+        #endregion
 
     }
 }

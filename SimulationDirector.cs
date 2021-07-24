@@ -44,6 +44,9 @@ namespace College_Basketball_Simulator
         //BELL CURVE DISTRIBUTION SIDE LENGTH
         private int sideLength = 0;
 
+        //RANDOM NUMBER GENERATOR
+        private Random random = new Random();
+
         //DIVISION II SCHOOL OFFENSIVE SCORING AVERAGE
         private int divisionIIOffensiveScoringAverage = 0;
 
@@ -812,9 +815,6 @@ namespace College_Basketball_Simulator
 
         private int getScoreAdjustment()
         {
-            //RANDOM NUMBER GENERATOR
-            Random random = new Random();
-
             //DISTRIBUTION NUMBER
             int probability = random.Next(5001 + (sideLength * 4 - 1));
 
@@ -825,6 +825,8 @@ namespace College_Basketball_Simulator
             //EXIT WHEN SCORE FOUND
             for (int index = 0; index < listProbabilityDistributionRange.Count; index++)
             {
+                //Console.WriteLine(listProbabilityDistributionRange[index] + " " + probability + " " + positiveNegative);
+
                 if (listProbabilityDistributionRange[index] >= probability && positiveNegative == 1)
                 {
                     return listScoringDistributionRange[index];
@@ -836,11 +838,8 @@ namespace College_Basketball_Simulator
 
             }//END FOR
 
-            //DISPLAY ERROR MESSAGE
-            System.Windows.Forms.MessageBox.Show("SCORE ADJUSTMENT ERROR");
-
             //RETURN LAST ADJUSTMENT
-            return listScoringDistributionRange[listScoringDistributionRange.Count - 1];
+            return 0;
 
         } //END
 
@@ -862,26 +861,26 @@ namespace College_Basketball_Simulator
             {
                 resetOneDay();
 
-                currentSimulationDate.AddDays(-1.0);
+                currentSimulationDate = currentSimulationDate.AddDays(-1.0);
 
                 while (0 > DateTime.Compare(goToDate, currentSimulationDate))
                 {
                     resetOneDay();
 
-                    currentSimulationDate.AddDays(-1.0);
+                    currentSimulationDate = currentSimulationDate.AddDays(-1.0);
                 }//END WHILE
             }
             else if (0 < DateTime.Compare(goToDate, currentSimulationDate))
             {
                 advanceSimGamesOneDay();
 
-                currentSimulationDate.AddDays(1.0);
+                currentSimulationDate = currentSimulationDate.AddDays(1.0);
 
                 while (0 < DateTime.Compare(goToDate, currentSimulationDate))
                 {
                     advanceSimGamesOneDay();
 
-                    currentSimulationDate.AddDays(1.0);
+                    currentSimulationDate = currentSimulationDate.AddDays(1.0);
                 }//END WHILE 
             }//END IF
 
@@ -896,7 +895,7 @@ namespace College_Basketball_Simulator
             {
                 resetOneDay();
 
-                currentSimulationDate.AddDays(-1.0);
+                currentSimulationDate = currentSimulationDate.AddDays(-1.0);
             }//END WHILE
 
             addRealGames(startFromDate);
@@ -905,7 +904,7 @@ namespace College_Basketball_Simulator
             {
                 advanceSimGamesOneDay();
 
-                currentSimulationDate.AddDays(1.0);
+                currentSimulationDate = currentSimulationDate.AddDays(1.0);
             }//END WHILE
 
             return true;
@@ -1445,7 +1444,7 @@ namespace College_Basketball_Simulator
                         appResources.getConferenceTournamentStartDate(confIndex).Day, 
                         0, 0, 0, 0);
 
-                    roundDate.AddDays(currentRound);
+                    roundDate = roundDate.AddDays(currentRound);
 
                     if (currentRound > 0 &&
                         0 == DateTime.Compare(currentSimulationDate, roundDate))

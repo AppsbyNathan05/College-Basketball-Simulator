@@ -111,11 +111,6 @@ namespace College_Basketball_Simulator
 
         } //END
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            
-        } //END
-
         //---------------------------------------------------------------------
         //---------------------------------------------------------------------
         //LOCAL FUNCTIONS------------------------------------------------------
@@ -544,6 +539,13 @@ namespace College_Basketball_Simulator
             //SHOW MENU PANEL
             panelSettings.Visible = true;
 
+            //SET DEFAULT VALUES
+            textBoxMinScoreRangeSet.Text = appDirector.getSettings().minScoringAverage.ToString();
+            textBoxMaxScoreRangeSet.Text = appDirector.getSettings().maxScoringAverage.ToString();
+            textBoxScoreDistRangeSet.Text = appDirector.getSettings().scoringDistribution.ToString();
+            comboBoxSimTypeSet.SelectedIndex = 0;
+            textBoxSaveFoldLocationSet.Text = appDirector.getSaveFolder();
+
             //SHOW BACK BUTTON
             buttonBackSet.Visible = showBackButton();
         } //END
@@ -645,6 +647,9 @@ namespace College_Basketball_Simulator
             //FILL TEAM SCHEDULE TABLE
             appDirector.fillTeamSchedDataTable(teamIndex);
 
+            //REFRESH DATA GRID VIEW
+            dataGridViewTeamSchedTeamSched.DataSource = appDirector.getTeamSchedDataTable();
+
             //SET TEAM NAME LABEL
             labelTeamSchedTeamSched.Text = appResources.getTeamName(teamIndex);
 
@@ -668,6 +673,9 @@ namespace College_Basketball_Simulator
 
             //FILL DATE SCHEDULE TABLE
             appDirector.fillDateSchedDataTable(dateIndex);
+
+            //REFRESH DATA GRID VIEW
+            dataGridViewDateSchedDateSched.DataSource = appDirector.getDateSchedDataTable();
 
             //GET DATE TEXT
             string dateText = dataGridViewDatesSchedFind.Rows[dateIndex].Cells[0].Value.ToString();
@@ -1387,25 +1395,31 @@ namespace College_Basketball_Simulator
         private void buttonGoSimTo_Click(object sender, EventArgs e)
         {
             //GET DAY MONTH YEAR
-            int day = comboBoxDaySimTo.SelectedIndex;
-            int month = comboBoxMonthSimTo.SelectedIndex;
+            int day = comboBoxDaySimTo.SelectedIndex + 1;
+            int month = comboBoxMonthSimTo.SelectedIndex + 1;
             int year = calculateYear(month);
 
-            //SET DATE
-            DateTime goToDate = new DateTime(year, month, day, 0, 0, 0, 0);
+            if (day > 0 && month > 0)
+            {
+                //SET DATE
+                DateTime goToDate = new DateTime(year, month, day, 0, 0, 0, 0);
 
-            //IF SIMULATION SUCCESSFUL
-            //DISPLAY SUCCESS MESSAGE
-            //ELSE
-            //DISPLAY FAIL MESSAGE
-            if (appDirector.goSimTo(goToDate))
-            {
-                System.Windows.Forms.MessageBox.Show("Successfully simulated to " + goToDate.ToString("d"));
-            }
-            else
-            {
-                System.Windows.Forms.MessageBox.Show("ERROR: FAILED TO SIMULATE TO " + goToDate.ToString("d"));
-            } //END IF
+                //IF SIMULATION SUCCESSFUL
+                //DISPLAY SUCCESS MESSAGE
+                //ELSE
+                //DISPLAY FAIL MESSAGE
+                if (appDirector.goSimTo(goToDate))
+                {
+                    System.Windows.Forms.MessageBox.Show("Successfully simulated to " + goToDate.ToString("d"));
+                }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("ERROR: FAILED TO SIMULATE TO " + goToDate.ToString("d"));
+                } //END IF 
+
+                //RELOAD MENU
+                goTo(appResources.getMenuText(6));
+            }//END IF
         } //END
 
         //---------------------------------------------------------------------
@@ -1441,25 +1455,32 @@ namespace College_Basketball_Simulator
         private void buttonGoStartFrom_Click(object sender, EventArgs e)
         {
             //GET DAY MONTH YEAR
-            int day = comboBoxDayStartFrom.SelectedIndex;
-            int month = comboBoxMonthStartFrom.SelectedIndex;
+            int day = comboBoxDayStartFrom.SelectedIndex + 1;
+            int month = comboBoxMonthStartFrom.SelectedIndex + 1;
             int year = calculateYear(month);
 
-            //SET DATE
-            DateTime startFromDate = new DateTime(year, month, day, 0, 0, 0, 0);
+            if (day > 0 && month > 0)
+            {
+                //SET DATE
+                DateTime startFromDate = new DateTime(year, month, day, 0, 0, 0, 0);
 
-            //IF SIMULATION SUCCESSFUL
-            //DISPLAY SUCCESS MESSAGE
-            //ELSE
-            //DISPLAY FAIL MESSAGE
-            if (appDirector.goStartFrom(startFromDate))
-            {
-                System.Windows.Forms.MessageBox.Show("Successfully simulated to " + startFromDate.ToString("d"));
-            }
-            else
-            {
-                System.Windows.Forms.MessageBox.Show("ERROR: FAILED TO SIMULATE TO " + startFromDate.ToString("d"));
-            } //END IF
+                //IF SIMULATION SUCCESSFUL
+                //DISPLAY SUCCESS MESSAGE
+                //ELSE
+                //DISPLAY FAIL MESSAGE
+                if (appDirector.goStartFrom(startFromDate))
+                {
+                    System.Windows.Forms.MessageBox.Show("Successfully simulated to " + startFromDate.ToString("d"));
+                }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("ERROR: FAILED TO SIMULATE TO " + startFromDate.ToString("d"));
+                } //END IF
+
+                //RELOAD MENU
+                goTo(appResources.getMenuText(7));
+            }//END IF
+
         } //END
 
         //---------------------------------------------------------------------
@@ -1480,7 +1501,7 @@ namespace College_Basketball_Simulator
         {
             //IF USER SELECTED A CONFERENCE OR ALL TEAMS
             //ELSE USER HAS NOT MADE A SELECTION
-            if (comboBoxConfSchedFind.SelectedIndex > 0)
+            if (comboBoxConfSchedFind.SelectedIndex > -1)
             {
                 //LOAD SCHEDULE FIND
                 goTo(appResources.getMenuText(8), comboBoxConfSchedFind.SelectedIndex);
@@ -2202,6 +2223,8 @@ namespace College_Basketball_Simulator
 
         private void setSimToAndStartFromDisplayDates(int month)
         {
+            month++;
+
             //LOCAL DATE VARIABLES
             int daysInMonth = 31;
             int year = calculateYear(month);

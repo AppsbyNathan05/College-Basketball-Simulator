@@ -120,7 +120,7 @@ namespace College_Basketball_Simulator
                 dateScheduleArray[dateIndex] = new DateScheduleTable(date);
 
                 //INCREMENT DATE
-                date.AddDays(1);
+                date = date.AddDays(1.0);
             } //END FOR
 
 
@@ -191,7 +191,7 @@ namespace College_Basketball_Simulator
                     dateScheduleArray[dateIndex].reSetDateSchedule(date);
 
                     //INCREMENT DATE
-                    date.AddDays(1);
+                    date = date.AddDays(1.0);
                 } //END FOR 
             }// END IF
 
@@ -433,7 +433,7 @@ namespace College_Basketball_Simulator
             else if (conferenceIndex > 0)
             {
                 //GET CONFERENCE ARRAY OF TEAM INDEXES
-                int[] arrayIntTeamIndexes = appResources.getConferenceTeamIndexes(conferenceIndex);
+                int[] arrayIntTeamIndexes = appResources.getConferenceTeamIndexes(conferenceIndex - 1);
 
                 //FOR ALL TEAMS IN THE CONFERENCE
                 //POPULATE DATA TABLE
@@ -444,7 +444,7 @@ namespace College_Basketball_Simulator
 
                     //POPULATE ROW
                     row[0] = appResources.getTeamName(arrayIntTeamIndexes[index]);
-                    row[1] = appResources.getConferenceName(conferenceIndex);
+                    row[1] = appResources.getConferenceName(conferenceIndex - 1);
 
                     //ADD ROW TO DATA TABLE
                     schedSlectTeamsDataTable.Rows.Add(row);
@@ -483,8 +483,8 @@ namespace College_Basketball_Simulator
 
                     //ADD ROW TO DATA TABLE
                     schedSlectDatesDataTable.Rows.Add(row);
-
-                    date.AddDays(1);
+                    
+                    date = date.AddDays(1.0);
                 }//END FOR 
             }//END IF
 
@@ -556,6 +556,9 @@ namespace College_Basketball_Simulator
 
         public void fillTeamSchedDataTable(Schedule schedule, int teamIndex)
         {
+            //SET SCHEDULE INDEX
+            indexTeamSchedule = teamIndex;
+
             //IF SCHEDULE NOT UPDATED
             //FILL SCHEDULE
             if (arrayBoolTeamScheduleUpdated[teamIndex] == false)
@@ -568,12 +571,18 @@ namespace College_Basketball_Simulator
             //SET UPDATED TO TRUE
             arrayBoolTeamScheduleUpdated[teamIndex] = true;
 
+            //DELETE----------------------------------------------------------------------------------
+            Console.WriteLine(" ");
+
         } //END
 
         //DATE SCHEDULE DATA TABLE---------------------------------------------
 
         public void fillDateSchedDataTable(int dateIndex, Team[] teamsArray)
         {
+            //SET SCHEDULE INDEX
+            indexDateSchedule = dateIndex;
+
             //IF SCHEDULE NOT UPDATED
             //FILL SCHEDULE
             if (arrayBoolDateScheduleUpdated[dateIndex] == false)

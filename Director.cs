@@ -769,6 +769,13 @@ namespace College_Basketball_Simulator
 
         } //END
 
+        //GET DISPLAY SETTINGS-------------------------------------------------
+
+        public SettingsDirector getSettings()
+        {
+            return settingsDirector;
+        }
+
         //---------------------------------------------------------------------
         //SAVE FOLDER----------------------------------------------------------
         //---------------------------------------------------------------------
@@ -786,6 +793,13 @@ namespace College_Basketball_Simulator
 
             return result;
         } //END
+
+        //GET------------------------------------------------------------------
+
+        public string getSaveFolder()
+        {
+            return saveLoadDirector.getSaveFolder();
+        }
 
         //---------------------------------------------------------------------
         //---------------------------------------------------------------------
